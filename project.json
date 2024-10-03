@@ -8,7 +8,7 @@
     "splashText": "Powered by AutoJs6",
     "stableMode": false
   },
-  "main": "xianyu_main.js",
+  "main": "tenxun_main.js",
   "name": "%ProjectName%",
   "optimization": {
     "removeOpenCv": false,

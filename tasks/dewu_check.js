@@ -1,4 +1,6 @@
 const autojsUtils = require('../modules/autojs-utils');
+autojsUtils.auth()
+
 const appName = 'com.shizhuang.duapp'
 
 const itemName = '签到有奖'

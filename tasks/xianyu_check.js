@@ -1,6 +1,6 @@
 const autojsUtils = require('../modules/autojs-utils');
 const appName = 'com.taobao.idlefish'
-
+autojsUtils.auth()
 const itemName = '咸鱼签到'
 const itemName1 = '咸鱼曝光任务'
 if (!auto.service) {
@@ -49,6 +49,7 @@ function runTaskList() {
     console.log('任务列表控件', `${p1s.length}`)
     let num = 0
     let last = []
+    let bounds = null
 
     for (let i = 0; i < p1s.length; i++) {
         let nowI = i
@@ -82,6 +83,18 @@ function runTaskList() {
 
         if (btn) {
             console.log(title, '找到任务入口', `btn[${i}]`, `当前运行任务数${++num}`)
+
+
+            if (num == 2) { //第二个任务需要记住坐标用于滑动
+                bounds = btn.bounds()
+            }
+
+            if (bounds) {
+                console.log('开始滑动')
+                swipe(Math.ceil(width / 2), height - 300, Math.ceil(width / 2), height - 600, 1000)
+                sleep(500 * 1)
+            }
+
             if (btn.text() == '领取奖励') {
                 btn.click()
                 console.log('领取奖励,休息2秒')
@@ -284,7 +297,8 @@ function task() {
         return code
     }
 
-    let myPublish = myTrans.brother(3)
+    let myPublish = myTrans.brother(2)
+
     if (!myPublish && myPublish.text() && myPublish.text().slice(0, 4) != '我的发布') {
         console.log('未找到我的发布')
         return code
@@ -341,7 +355,7 @@ function task() {
     sleep(15 * 1000)
     //
     console.log('打开任务栏')
-    let chioce = depth(14).className('Image').findOne() //第一个就是
+    let chioce = depth(14).className('Image').findOne(1000) //第一个就是
     if (!chioce) {
         console.log('没有找到需要按钮的覆盖层图片')
         return code
@@ -360,6 +374,7 @@ function task() {
         // 12:41:17.297/D: Rect(374, 968 - 698, 1270)
         console.log(element.className(), element.bounds()) //0-鱼乐园 1-赚塞子 2-开宝箱 3-背包 4-扔色子寻宝 
     });
+
     btns[1].click()
     // console.log(text('签到').findOne(2000))
     if (text('签到').findOne(2000)) {
@@ -372,6 +387,60 @@ function task() {
         return code
     }
 
+    // 点击一下攻略
+    let gl = text('攻略').findOne(2000)
+    if (!gl) {
+        console.log('没有攻略按钮')
+        return code
+    }
+    let glxy = gl.center()
+    click(glxy.x, glxy.y)
+    sleep(1000 * 2)
+    if (text('领取酬金').findOne(2000)) {
+        console.log('点击领取酬金')
+        text('领取酬金').findOne(2000).click()
+        sleep(5 * 1000)
+    }
+    let chioce1 = depth(14).className('Image').findOne(1000) //第一个就是
+    if (!chioce1) {
+        console.log('没有找到需要按钮的覆盖层图片，跑飞了')
+        return code
+    }
+    let btn1s = chioce1.brother(1).children()
+    if (!btn1s && btn1s.length != 5) {
+        console.log('没有任务按钮，跑飞了')
+        return code
+    }
+
+    for (let index = 0; index < 15; index++) {
+        if (text('赚').findOne(1000)) {
+            console.log('没色子了，退出')
+            break
+        }
+
+        console.log('执行第', index + 1, '次', '开始投色子')
+        let xy = btn1s[4].center()
+        click(xy.x, xy.y)
+        sleep(1000 * 10)
+
+        if (text('开始抽奖').findOne(1000)) {
+            console.log('点击开始抽奖')
+            text('开始抽奖').findOne(1000).click()
+            sleep(1000 * 5)
+        }
+
+        if (text('开始刮奖').findOne(1000)) {
+            console.log('点击开始刮奖')
+            text('开始刮奖').findOne(1000).click()
+            sleep(1000 * 12)
+        }
+
+        if (text('收下礼物').findOne(1000)) {
+            text('收下礼物').findOne(1000).click()
+            sleep(1000 * 5)
+        }
+    }
+
     sleep(1000 * 5)
     autojsUtils.close(appName)
     home()
@@ -379,56 +448,6 @@ function task() {
     return 1
 }
 
-// function task1() {
-//     let code = 0
-//     console.log(`开始执行${itemName1}任务`)
-//     autojsUtils.close(appName)
-//     // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
-//     home()
-//     sleep(1000 * 5)
-//     if (!launch(appName)) {
-//         console.log(appName, '启动失败')
-//         return code
-//     }
-//     console.log('打开app')
-//     sleep(1000 * 10)
-
-//     let myBton = text('我的').findOne(3000)
-
-//     if (!myBton) {
-//         console.log('未找到我的按钮')
-//         return code
-//     }
-//     let mxy = myBton.center()
-//     click(mxy.x, mxy.y)
-//     sleep(1000 * 2)
-//     click(mxy.x, mxy.y)
-//     sleep(1000 * 2)
-
-//     if (desc('曝光推广').findOne(2000)) {
-//         console.log('曝光推广', desc('曝光推广').findOne(2000).click())
-//         sleep(1000 * 2)
-//         if (text('做任务领曝光').findOne(2000)) {
-//             let xy = text('做任务领曝光').findOne(2000).center()
-//             click(xy.x, xy.y)
-//             sleep(1000 * 2)
-
-
-//             console.log('开始领取任务')
-//             for (let index = 0; index < 5; index++) {
-
-//             }
-
-//         }
-//     }
-
-
-//     sleep(1000 * 5)
-//     autojsUtils.close(appName)
-//     home()
-//     console.log(`执行${itemName}任务结束`);
-//     return 1
-// }
 
 module.exports = () => {
     let flag = false
@@ -436,7 +455,7 @@ module.exports = () => {
         flag = autojsUtils.unlock('lmon.com')
 
         for (let index = 0; index < 3; index++) {
-            console.log('失败后尝试执行第', index + 1, '次')
+            console.log('执行第', index + 1, '次')
             let code = task()
             if (code == 0) {
                 autojsUtils.close(appName)

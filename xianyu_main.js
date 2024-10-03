@@ -8,3 +8,5 @@ sleep(1000)
 xianyu_check()
 console.log('2 xianyu_check 1s')
 sleep(1000)
+
+exist()
