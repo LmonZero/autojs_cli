@@ -8,5 +8,5 @@ sleep(1000)
 // console.log('2 tenxun_check 1s')
 // sleep(1000)
 
-exist()
+exit()
 

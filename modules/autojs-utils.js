@@ -7,6 +7,11 @@ module.exports = {
         toastLog(`now run ${runningScripts.length}==${this.greetingPrefix}`);
     },
     close(appName) { //小米关闭app
+        home()
+        sleep(1000)
+        recents()
+        id('clearAnimView').findOne(1000).click()
+
         console.log('打开app设置', appName, launchSettings(appName))
         sleep(2000);
         let off = text("结束运行").findOne(this.findTime)

@@ -115,7 +115,7 @@ try {
     // sleep(1000 * 2)
 
 
-    text()
+    recents()
 
 } catch (error) {
     console.error('==eeeee====', error)

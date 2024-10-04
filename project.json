@@ -8,7 +8,7 @@
     "splashText": "Powered by AutoJs6",
     "stableMode": false
   },
-  "main": "tenxun_main.js",
+  "main": "dysc_main.js",
   "name": "%ProjectName%",
   "optimization": {
     "removeOpenCv": false,
