@@ -99,9 +99,9 @@ module.exports = {
         var thread
         try {
             thread = threads.start(function () {
-                sleep(2000)
+                sleep(100)
 
-                if (text('立即开始').findOne(2000)) {
+                if (text('立即开始').findOne(3000)) {
                     text('立即开始').findOne(1000).click()
                 }
                 console.log('线程结束..')
@@ -110,8 +110,7 @@ module.exports = {
                 toastLog('请求截图失败');
                 return
             }
-            console.log('请求截图成功okok');
-            sleep(500)
+            sleep(600)
             let img = images.captureScreen();
             sleep(20)
             console.log('截图完成')

@@ -66,7 +66,7 @@ module.exports = () => {
     let flag = false
     try {
         flag = autojsUtils.unlock('lmon.com')
-        for (let index = 0; index < 3; index++) {
+        for (let index = 0; index < 2; index++) {
             console.log('执行第', index + 1, '次')
             let code = task()
             if (code == 0) {
