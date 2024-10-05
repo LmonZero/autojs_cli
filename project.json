@@ -8,7 +8,7 @@
     "splashText": "Powered by AutoJs6",
     "stableMode": false
   },
-  "main": "dysc_main.js",
+  "main": "main.js",
   "name": "%ProjectName%",
   "optimization": {
     "removeOpenCv": false,

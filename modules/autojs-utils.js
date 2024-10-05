@@ -110,16 +110,18 @@ module.exports = {
                 toastLog('请求截图失败');
                 return
             }
+            console.log('请求截图成功okok');
             sleep(500)
             let img = images.captureScreen();
             sleep(20)
+            console.log('截图完成')
             return img
         } catch (error) {
             console.error('==eeeee====', error)
         } finally {
             if (thread && thread.isAlive()) {
-                thread.interrupt();
                 console.log('关闭确认线程')
+                thread.interrupt();
             }
         }
 

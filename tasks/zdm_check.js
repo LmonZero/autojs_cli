@@ -1,9 +1,9 @@
 const autojsUtils = require('../modules/autojs-utils');
 autojsUtils.auth()
 
-const appName = 'com.ss.android.ugc.livelite'
+const appName = 'com.smzdm.client.android'
 
-const itemName = '抖音商城签到'
+const itemName = '什么值得买签到'
 
 if (!auto.service) {
     console.log('无无障碍权限')
@@ -32,61 +32,30 @@ function task() {
         console.log(appName, '启动失败')
         return code
     }
-    sleep(1000 * 10)
-    back()
-    sleep(1000 * 2)
+    sleep(1000 * 8)
 
-    if (text('以后再说').findOne(2000)) {
-        console.log('点击以后再说')
-        text('以后再说').findOne(2000).click()
-        sleep(1000 * 2)
-    }
+    back();
+    sleep(1000 * 1)
 
-
-    let ck = text('视频').findOne(2000)
-    if (!ck) {
-        console.log('找不到签到入口')
+    let my = text('我的').findOne(2000)
+    if (!my) {
+        console.log('没有找到<我的>')
         return code
     }
 
-    let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
-    console.log('点击入口', xy)
+    let xy = my.center()
     click(xy.x, xy.y)
-    sleep(5 * 1000)
+    sleep(1000 * 3)
 
-    console.log('检查是否在签到界面')
-    let img = autojsUtils.capScreen()
-    let small_exit = images.read('./png/dy_ck_exit.jpg')
-    let exit_in = autojsUtils.getPngCenter(small_exit, img)
-    small_exit.recycle()
-    console.log('检查是否在签到界面', exit_in)
-    if (!exit_in) {
-        console.log('不在签到界面')
+    let sign = id('v_container_login_not_sign_animation').findOne(2000)
+    if (!sign) {
+        console.log('没有找到<签到>')
         return code
     }
+    let xy2 = sign.center()
+    click(xy2.x, xy2.y)
 
-    console.log('收金币')
-    img = autojsUtils.capScreen()
-    let small = images.read('./png/dy_ck1.jpg')
-    let task_png = autojsUtils.getPngCenter(small, img)
-    task_png.recycle()
-    if (task_png) {
-        click(task_png[0], task_png[1])
-        sleep(1000 * 2)
-    }
-
-    //dy_ck3.jpg 去签到
-    img = autojsUtils.capScreen()
-    small = images.read('./png/dy_ck3.jpg')
-    task_png = autojsUtils.getPngCenter(small, img)
-    task_png.recycle()
-    if (task_png) {
-        click(task_png[0], task_png[1])
-        sleep(1000 * 2)
-    }
-
-
-    sleep(1000 * 20)
+    sleep(1000 * 5)
     autojsUtils.close(appName)
     home()
     console.log(`执行${itemName}任务结束`);
@@ -97,7 +66,6 @@ module.exports = () => {
     let flag = false
     try {
         flag = autojsUtils.unlock('lmon.com')
-
         for (let index = 0; index < 3; index++) {
             console.log('执行第', index + 1, '次')
             let code = task()
@@ -114,6 +82,5 @@ module.exports = () => {
         if (flag) {
 
         }
-        autojsUtils.media(0.2)
     }
 }
