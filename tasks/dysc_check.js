@@ -252,7 +252,7 @@ function shipingTask() {
             for (let i = 0; i < 16; i++) {
                 console.log(i, '滑动,休息30s')
                 swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
-                sleep(1000 * 30)
+                sleep(1000 * 20)
                 let delay = Math.ceil(Math.random() * 20)
                 console.log('随机', delay)
                 sleep(1000 * delay)
