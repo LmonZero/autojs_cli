@@ -156,15 +156,21 @@ try {
 
     // centerX(212, 1485)
     // gesture(3000, [212, 1485], [300, 1485])
-    if (text('亲，请拖动下方滑块完成验证').findOne(2000)) {
+    // if (text('亲，请拖动下方滑块完成验证').findOne(2000)) {
 
-        let xy = text('亲，请拖动下方滑块完成验证').findOne(2000).brother(2).child(0).child(0).child(0).child(1).center()
-        console.log('需要滑动验证验证码====', xy)
-        // gesture(1500, [xy.x, xy.y], [Math.ceil((width - 100) / 2), xy.y], [Math.ceil((width - 100) / 3), xy.y], [width - 100, xy.y])
-        // gestures([0, 800, [xy.x, xy.y], [Math.ceil((width - 100) / 2), xy.y]], [30, 500, [Math.ceil((width - 100) / 2), xy.y], [width - 100, xy.y]])
-        randomSwipe(xy.x, xy.y, width - 100, xy.y)
+    //     let xy = text('亲，请拖动下方滑块完成验证').findOne(2000).brother(2).child(0).child(0).child(0).child(1).center()
+    //     console.log('需要滑动验证验证码====', xy)
+    //     // gesture(1500, [xy.x, xy.y], [Math.ceil((width - 100) / 2), xy.y], [Math.ceil((width - 100) / 3), xy.y], [width - 100, xy.y])
+    //     // gestures([0, 800, [xy.x, xy.y], [Math.ceil((width - 100) / 2), xy.y]], [30, 500, [Math.ceil((width - 100) / 2), xy.y], [width - 100, xy.y]])
+    //     randomSwipe(xy.x, xy.y, width - 100, xy.y)
+    // }
+    console.log('====', text('分享').findOne(2000).parent().parent())
+    let xy = text('收藏').findOne(2000).parent().parent().child(1).center()
+    console.log('点赞开始', xy)
+    if (xy && xy.x > 0 && xy.y > 0) {
+        click(xy.x, xy.y)
+        sleep(1000 * 2)
     }
-
 
 } catch (error) {
     console.error('==eeeee====', error)

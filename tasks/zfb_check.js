@@ -24,15 +24,35 @@ console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
 function zfbShiping(times) {
     console.log('开始支付宝视频')
-    sleep(2000)
+    sleep(6000)
     for (let i = 0; i < times; i++) {
+        if (!text('发现').findOne(2000)) {
+            console.log('发现不存在,跑飞了？？')
+            break
+        }
+
         console.log(i, '滑动,休息15s')
         swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
         sleep(1000 * 15)
         let delay = Math.ceil(Math.random() * 15)
         console.log('随机', delay)
         sleep(1000 * delay)
+        if (delay > 6) {
+            if (text('收藏').findOne(1000)) {
+                try {
 
+                    let xy = text('收藏').findOne(2000).parent().parent().child(1).center()
+                    console.log('点赞开始', xy)
+                    if (xy && xy.x > 0 && xy.y > 0) {
+                        click(xy.x, xy.y)
+                        sleep(1000 * 2)
+                    }
+
+                } catch (error) {
+                    console.log('点赞失败', error)
+                }
+            }
+        }
     }
 
 }
