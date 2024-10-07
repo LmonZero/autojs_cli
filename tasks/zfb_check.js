@@ -44,7 +44,7 @@ function zfbShiping(times) {
                     let xy = text('收藏').findOne(2000).parent().parent().child(1).center()
                     console.log('点赞开始', xy)
                     if (xy && xy.x > 0 && xy.y > 0) {
-                        click(xy.x, xy.y)
+                        longClick(xy.x, xy.y)
                         sleep(1000 * 2)
                     }
 
