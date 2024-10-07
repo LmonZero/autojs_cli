@@ -1,3 +1,53 @@
+
+function bezierCreate(x1, y1, x2, y2, x3, y3, x4, y4) {
+    //构建参数
+    var h = 100;
+    var cp = [{ x: x1, y: y1 + h }, { x: x2, y: y2 + h }, { x: x3, y: y3 + h }, { x: x4, y: y4 + h }];
+    var numberOfPoints = 100;
+    var curve = [];
+    var dt = 1.0 / (numberOfPoints - 1);
+
+    //计算轨迹
+    for (var i = 0; i < numberOfPoints; i++) {
+        var ax, bx, cx;
+        var ay, by, cy;
+        var tSquared, tCubed;
+        var result_x, result_y;
+
+        cx = 3.0 * (cp[1].x - cp[0].x);
+        bx = 3.0 * (cp[2].x - cp[1].x) - cx;
+        ax = cp[3].x - cp[0].x - cx - bx;
+        cy = 3.0 * (cp[1].y - cp[0].y);
+        by = 3.0 * (cp[2].y - cp[1].y) - cy;
+        ay = cp[3].y - cp[0].y - cy - by;
+
+        var t = dt * i
+        tSquared = t * t;
+        tCubed = tSquared * t;
+        result_x = (ax * tCubed) + (bx * tSquared) + (cx * t) + cp[0].x;
+        result_y = (ay * tCubed) + (by * tSquared) + (cy * t) + cp[0].y;
+        curve[i] = {
+            x: result_x,
+            y: result_y
+        };
+    }
+
+    //轨迹转路数组
+    var array = [];
+    for (var i = 0; i < curve.length; i++) {
+        try {
+            var j = (i < 100) ? i : (199 - i);
+            xx = parseInt(curve[j].x)
+            yy = parseInt(Math.abs(100 - curve[j].y))
+        } catch (e) {
+            break
+        }
+        array.push([xx, yy])
+    }
+
+    return array
+}
+
 module.exports = {
     greetingPrefix: 'ver-1.00.00.20240923',
     findTime: 2 * 1000,
@@ -10,7 +60,10 @@ module.exports = {
         home()
         sleep(1000)
         recents()
-        id('clearAnimView').findOne(1000).click()
+
+        if (id('clearAnimView').findOne(1000)) {
+            id('clearAnimView').findOne(1000).click()
+        }
 
         console.log('打开app设置', appName, launchSettings(appName))
         sleep(2000);
@@ -99,7 +152,7 @@ module.exports = {
         var thread
         try {
             thread = threads.start(function () {
-                sleep(100)
+                sleep(500)
 
                 if (text('立即开始').findOne(3000)) {
                     text('立即开始').findOne(1000).click()
@@ -107,10 +160,12 @@ module.exports = {
                 console.log('线程结束..')
             });
             if (!images.requestScreenCapture()) {
+                console.log('请求截图失败')
                 toastLog('请求截图失败');
                 return
             }
-            sleep(600)
+            console.log('开启线程')
+            sleep(1000)
             let img = images.captureScreen();
             sleep(20)
             console.log('截图完成')
@@ -118,6 +173,7 @@ module.exports = {
         } catch (error) {
             console.error('==eeeee====', error)
         } finally {
+            console.log('capScreen end thread && thread.isAlive()==', thread && thread.isAlive())
             if (thread && thread.isAlive()) {
                 console.log('关闭确认线程')
                 thread.interrupt();
@@ -125,10 +181,18 @@ module.exports = {
         }
 
     },
-    getPngCenter(smallImg, bigImg) {
+    getPngCenter(smallImg, bigImg, threshold) {
 
         try {
-            let point = images.findImage(bigImg, smallImg);
+            let point = null
+            if (threshold) {
+                point = images.findImage(bigImg, smallImg, {
+                    threshold: threshold
+                });
+            } else {
+                point = images.findImage(bigImg, smallImg);
+            }
+
             if (point) {
                 return [point.x + smallImg.width / 2, point.y + smallImg.height / 2, point.x, point.y, smallImg.width, smallImg.height]
             } else {
@@ -138,5 +202,44 @@ module.exports = {
             console.error('==eeeee====', error)
         }
 
+    }, randomSwipe(sx, sy, ex, ey) {
+        //设置随机滑动时长范围
+        var timeMin = 500
+        var timeMax = 1500
+        //设置控制点极限距离
+        var leaveHeightLength = 500
+
+        //根据偏差距离，应用不同的随机方式
+        if (Math.abs(ex - sx) > Math.abs(ey - sy)) {
+            var my = (sy + ey) / 2
+            var y2 = my + random(0, leaveHeightLength)
+            var y3 = my - random(0, leaveHeightLength)
+
+            var lx = (sx - ex) / 3
+            if (lx < 0) { lx = -lx }
+            var x2 = sx + lx / 2 + random(0, lx)
+            var x3 = sx + lx + lx / 2 + random(0, lx)
+        } else {
+            var mx = (sx + ex) / 2
+            var y2 = mx + random(0, leaveHeightLength)
+            var y3 = mx - random(0, leaveHeightLength)
+
+            var ly = (sy - ey) / 3
+            if (ly < 0) { ly = -ly }
+            var y2 = sy + ly / 2 + random(0, ly)
+            var y3 = sy + ly + ly / 2 + random(0, ly)
+        }
+
+        //获取运行轨迹，及参数
+        var time = [0, random(timeMin, timeMax)]
+        var track = bezierCreate(sx, sy, x2, y2, x3, y3, ex, ey)
+
+        log("随机控制点A坐标：" + x2 + "," + y2)
+        log("随机控制点B坐标：" + x3 + "," + y3)
+        log("随机滑动时长：" + time[1])
+
+        //滑动
+        gestures(time.concat(track))
+        console.hide()
     }
 };

@@ -155,6 +155,14 @@ function runTaskList() {
 //浏览型任务
 function runBrowseTask(times) {
     sleep(1000 * 8)
+    if (text('亲，请拖动下方滑块完成验证').findOne(5000)) {
+        // sleep(1000 * 1)
+        let xy = text('亲，请拖动下方滑块完成验证').findOne(2000).brother(2).child(0).child(0).child(0).child(1).center()
+        console.log('需要滑动验证验证码====', xy)
+        // gesture(1000, [xy.x, xy.y], [width - 100, xy.y])
+        autojsUtils.randomSwipe(xy.x, xy.y, width - 100, xy.y)
+
+    }
     for (let i = 0; i < times; i++) {
         let dstH = Math.floor(height / 3)
         let offsetW = Math.floor(Math.random() * 100)
@@ -167,6 +175,14 @@ function runBrowseTask(times) {
 //搜索浏览型任务
 function runSearchBrowseTask(times) {
     sleep(1000 * 5)
+    if (text('亲，请拖动下方滑块完成验证').findOne(5000)) {
+        // sleep(1000 * 1)
+
+        let xy = text('亲，请拖动下方滑块完成验证').findOne(2000).brother(2).child(0).child(0).child(0).child(1).center()
+        console.log('需要滑动验证验证码====', xy)
+        // gesture(1000, [xy.x, xy.y], [width - 100, xy.y])
+        autojsUtils.randomSwipe(xy.x, xy.y, width - 100, xy.y)
+    }
     console.log('查看推荐搜索')
     let list = className('ListView').findOne(2000)
     if (list) {
@@ -412,9 +428,19 @@ function task() {
         return code
     }
 
-    for (let index = 0; index < 15; index++) {
+    for (let index = 0; index < 5; index++) {
         if (text('赚').findOne(1000)) {
             console.log('没色子了，退出')
+            break
+        }
+
+        if (text('×2').findOne(1000)) {
+            console.log('就2个色子了,退出')
+            break
+        }
+
+        if (!text('用闲鱼币兑权益').findOne(1000)) {
+            console.log('用闲鱼币兑权益找不到可能退出了')
             break
         }
 

@@ -73,6 +73,24 @@ function task() {
     }
 
 
+    if (text('立即签到').findOne(1000)) {
+        let xy = text('立即签到').findOne().center()
+        console.log('1点击立即签到', xy)
+        click(xy.x, xy.y)
+        sleep(1000 * 2)
+        img = autojsUtils.capScreen()
+        let small_shiping = images.read('./png/dy_shiping_again.jpg')
+        let shiping_in = autojsUtils.getPngCenter(small_shiping, img)
+        small_shiping.recycle()
+        if (shiping_in) {
+            console.log('点击继续观看')
+            click(shiping_in[0], shiping_in[1])
+            dyGuangao(5)
+        }
+    }
+
+
+
     let ck = text('视频').findOne(2000)
     if (!ck) {
         console.log('找不到签到入口')
@@ -121,6 +139,30 @@ function task() {
             return code
         }
 
+    } else {
+        //dy_ck8.jpg
+        console.log('查看连续签到，看广告')
+        img = autojsUtils.capScreen()
+        small = images.read('./png/dy_ck8.jpg')
+        task_png = autojsUtils.getPngCenter(small, img)
+        small.recycle()
+
+        if (task_png) {
+            // dy_ck9.jpg
+            console.log('点击连续签到', click(task_png[0], task_png[1]))
+            sleep
+            img = autojsUtils.capScreen()
+            small = images.read('./png/dy_ck9.jpg')
+            task_png = autojsUtils.getPngCenter(small, img)
+            small.recycle()
+            if (task_png) {
+                console.log('点击看广告', click(task_png[0], task_png[1]))
+                sleep(1000 * 2)
+                dyGuangao(5)
+            }
+
+
+        }
     }
 
     console.log('收金币')
@@ -132,14 +174,20 @@ function task() {
         console.log('点击收金币')
         click(Math.ceil(width / 2), task_png[1])
         sleep(1000 * 2)
-        img = autojsUtils.capScreen()
-        let small_shiping = images.read('./png/dy_shiping_again.jpg')
-        let shiping_in = autojsUtils.getPngCenter(small_shiping, img)
-        small_shiping.recycle()
-        if (shiping_in) {
-            console.log('点击继续观看')
-            click(shiping_in[0], shiping_in[1])
-            dyGuangao(5)
+
+        if (text('我知道了').findOne(1000)) {
+            console.log('点击我知道了')
+            text('我知道了').findOne(1000).click()
+        } else {
+            img = autojsUtils.capScreen()
+            let small_shiping = images.read('./png/dy_shiping_again.jpg')
+            let shiping_in = autojsUtils.getPngCenter(small_shiping, img)
+            small_shiping.recycle()
+            if (shiping_in) {
+                console.log('点击继续观看')
+                click(shiping_in[0], shiping_in[1])
+                dyGuangao(5)
+            }
         }
 
         console.log('检查是否在签到界面')
@@ -160,23 +208,24 @@ function task() {
         sleep(1000 * 2)
         img = autojsUtils.capScreen()
         small = images.read('./png/dy_ck4.jpg')
-        task_png = autojsUtils.getPngCenter(small, img)
+        task_png = autojsUtils.getPngCenter(small, img, 0.6)
+        console.log('检查是否一键抽奖', task_png)
+
         if (task_png) {
             console.log('点击抽奖')
             click(task_png[0], task_png[1])
             sleep(1000 * 2)
+        }
 
-            // 
-            img = autojsUtils.capScreen()
-            small = images.read('./png/dy_ck5.jpg')
-            task_png = autojsUtils.getPngCenter(small, img)
-
-            if (task_png) {
-                console.log('点击立即抽奖')
-                click(task_png[0], task_png[1])
-                sleep(1000 * 2)
-            }
-
+        // 
+        img = autojsUtils.capScreen()
+        small = images.read('./png/dy_ck5.jpg')
+        task_png = autojsUtils.getPngCenter(small, img, 0.6)
+        console.log('检查是否在立即抽奖', task_png)
+        if (task_png) {
+            console.log('点击立即抽奖')
+            click(task_png[0], task_png[1])
+            sleep(1000 * 2)
         }
 
     }

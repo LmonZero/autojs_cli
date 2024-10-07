@@ -76,7 +76,7 @@ function task() {
         click(xyCk.x, xyCk.y)
         sleep(1000 * 5)
 
-        for (let index = 0; index < 40; index++) {
+        for (let index = 0; index < 80; index++) {
 
             console.log('开始刷广告', index)
             let small = images.read('./png/tengxun_video_task.jpg')
@@ -101,7 +101,7 @@ function task() {
             if (xyTaskBt_get) {
                 console.log('点击领取按钮', xyTaskBt_get[0], xyTask[1])
                 click(xyTaskBt_get[0], xyTask[1])
-                sleep(1000 * 3)
+                sleep(1000 * 5)
                 if (text('成功领取10积分').findOne(2000)) {
                     let shipingAgain = text('成功领取10积分').findOne(2000).brother(1)
                     if (shipingAgain) {
@@ -124,7 +124,7 @@ function task() {
 
                 console.log('点击广告按钮', xyTaskBt[0], xyTask[1])
                 click(xyTaskBt[0], xyTask[1])
-                sleep(1000 * 8)
+                sleep(1000 * 9)
             }
 
             // if (xyTaskBt) {
@@ -132,7 +132,7 @@ function task() {
             img = autojsUtils.capScreen()
             let smallbton2 = images.read('./png/tengxun_video_guangao_ing.jpg')
 
-            let xyTaskBt2 = autojsUtils.getPngCenter(smallbton2, img)
+            let xyTaskBt2 = autojsUtils.getPngCenter(smallbton2, img, 0.6)
             smallbton2.recycle()
             console.log('是否进入视频', xyTaskBt2)
             if (!xyTaskBt2) {
@@ -172,7 +172,7 @@ module.exports = () => {
     let flag = false
     try {
         flag = autojsUtils.unlock('lmon.com')
-        for (let index = 0; index < 3; index++) {
+        for (let index = 0; index < 5; index++) {
             console.log('执行第', index + 1, '次')
             let code = task()
             if (code == 0) {
