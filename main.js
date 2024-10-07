@@ -9,6 +9,7 @@ const dysc_check = require('./tasks/dysc_check');
 const zdm_check = require('./tasks/zdm_check');
 
 const kuaishou_check = require('./tasks/kuaishou_check');
+const zfb_check = require('./tasks/zfb_check');
 
 
 
