@@ -123,6 +123,34 @@ function task() {
         return code
     }
     sleep(1000 * 15)
+    try {
+        if (id("like_button").findOne(1000)) {
+            console.log('点赞')
+            let xy = id("like_button").findOne(1000).center()
+            console.log('点赞', xy)
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
+                longClick(xy.x, xy.y)
+                sleep(1000)
+            }
+        }
+    } catch (error) {
+        console.log('点赞失败', error)
+    }
+    try {
+        if (id("like_button").findOne(1000)) {
+            console.log('点赞')
+            let xy = id("like_button").findOne(1000).center()
+            console.log('点赞', xy)
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
+                longClick(xy.x, xy.y)
+                sleep(1000)
+            }
+        }
+    } catch (error) {
+        console.log('点赞失败', error)
+    }
     back()
     sleep(1000 * 2)
 
