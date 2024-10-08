@@ -131,7 +131,7 @@ function task() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
@@ -145,7 +145,7 @@ function task() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
@@ -171,7 +171,7 @@ function task() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
@@ -276,7 +276,7 @@ function shipingTask() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
@@ -365,7 +365,7 @@ function shiping1Task() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
@@ -490,7 +490,7 @@ function shiping2Task() {
                 if (xy && (xy.x > 0 && xy.y > 0)) {
                     console.log('长按点赞', xy)
                     longClick(xy.x, xy.y)
-                    sleep(1000)
+                    sleep(3000)
                 }
 
             }
@@ -651,7 +651,7 @@ function shiping3Task() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
@@ -736,7 +736,7 @@ function shiping4Task() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
@@ -840,7 +840,7 @@ function guanjieTask() {
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
-                sleep(1000)
+                sleep(3000)
             }
         }
     } catch (error) {
