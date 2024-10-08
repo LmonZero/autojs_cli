@@ -10,6 +10,7 @@ const zdm_check = require('./tasks/zdm_check');
 
 const kuaishou_check = require('./tasks/kuaishou_check');
 const zfb_check = require('./tasks/zfb_check');
+const dyjishu_check = require('./tasks/dyjishu_check');
 
 
 
@@ -136,6 +137,11 @@ console.log('1 zfb_check 1s')
 sleep(1000)
 
 
+dyjishu_check()
+console.log('1 dyjishu_check 1s')
+sleep(1000)
+
+
 console.log('什么值得买任务')
 zdm_check()
 console.log('1 zdm_check 1s')
@@ -154,6 +160,11 @@ sleep(1000)
 console.log('联想任务')
 lianxiang_check()
 console.log('1 lianxiang_check 1s')
+sleep(1000)
+
+
+dyjishu_check()
+console.log('1 dyjishu_check 1s')
 sleep(1000)
 
 

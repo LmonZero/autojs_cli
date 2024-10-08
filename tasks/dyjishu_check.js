@@ -67,6 +67,10 @@ function dyShiping(times) {
     for (let i = 0; i < times; i++) {
         console.log(i, '滑动,休息10s')
         swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+        if (text('点击进入直播间').findOne(2000)) {
+            console.log('点击进入直播间,划走哦')
+            swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+        }
         sleep(1000 * 10)
         let delay = Math.ceil(Math.random() * 10)
         console.log('随机', delay)

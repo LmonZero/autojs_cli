@@ -172,7 +172,7 @@ try {
     //     sleep(1000 * 2)
     // }
 
-    console.log('====', text('明日可领').findOne(2000))
+    console.log('====', text('点击进入直播间').findOne(2000))
 
 } catch (error) {
     console.error('==eeeee====', error)
