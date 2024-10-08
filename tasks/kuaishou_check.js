@@ -771,24 +771,24 @@ function shiping4Task() {
         return code
     }
 
-    let val = text('看6次直播领金币').findOne(1000)
+    let val = text('看50次直播领金币').findOne(1000)
     if (!val) {
-        console.log('看6次直播领金币不存在')
+        console.log('看50次直播领金币不存在')
         return code
     }
     let t = val.parent().brother(1).text()
-    console.log('看6次直播领金币', t)
+    console.log('看50次直播领金币', t)
     if (t == '已完成') {
-        console.log('看6次直播领金币', '任务已经完成')
+        console.log('看50次直播领金币', '任务已经完成')
         return 1
     }
 
-    console.log('看6次直播领金币')
+    console.log('看50次直播领金币')
     if (val.click()) {
         sleep(1000 * 8)
 
         for (let index = 0; index < 6; index++) {
-            console.log('看6次直播领金币', index)
+            console.log('看50次直播领金币', index)
             if (!text('看直播领金币').findOne(1000)) {
                 console.log('看直播 跑飞了。。')
                 break
