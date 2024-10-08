@@ -833,7 +833,7 @@ function shiping4Task() {
 
 function shiping5Task() {
     let code = 0
-    console.log(`开始执行${itemName}任务shiping4Task`)
+    console.log(`开始执行${itemName}任务shiping5Task`)
     autojsUtils.close(appName)
     // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
     home()
@@ -905,29 +905,42 @@ function shiping5Task() {
             }
 
             for (let i = 0; i < 3; i++) {
+
+                if (text('规则').findOne(1000)) {
+                    console.log('入口页面')
+                    break;
+                }
+
                 back()
                 sleep(1000 * 1)
 
+
+                if (text('继续赚金币').findOne(1000)) {
+                    let xy = text('继续赚金币').findOne(1000).center()
+                    click(xy.x, xy.y)
+                    sleep(1000 * 2)
+                    break;
+                }
+
                 if (text('继续观看').findOne(1000)) {
-                    text('继续观看').findOne(1000).click()
-                    sleep(1000 * 10)
+                    let xy = text('继续观看').findOne(1000).center()
+                    click(xy.x, xy.y)
+
+                    sleep(1000 * 6)
                 }
 
                 if (text('领取奖励').findOne(1000)) {
-                    text('领取奖励').findOne(1000).click()
+                    let xy = text('领取奖励').findOne(1000).center()
+                    click(xy.x, xy.y)
                     sleep(1000 * 35)
                 } else {
                     if (text('放弃奖励').findOne(1000)) {
-                        text('放弃奖励').findOne(1000).click()
+                        let xy = text('放弃奖励').findOne(1000).center()
+                        click(xy.x, xy.y)
                         sleep(1000 * 2)
                     }
                 }
 
-                if (text('继续赚钱金币').findOne(1000)) {
-                    text('继续赚钱金币').findOne(1000).click()
-                    sleep(1000 * 2)
-                    break;
-                }
             }
 
 
