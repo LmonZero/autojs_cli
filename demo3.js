@@ -172,7 +172,16 @@ try {
     //     sleep(1000 * 2)
     // }
 
-    console.log('====', text('点击进入直播间').findOne(2000))
+    // console.log('====', text('点击进入直播间').findOne(2000))
+
+    console.log('点赞')
+    let xy = id("like_button").findOne(1000).center()
+    console.log('点赞', xy)
+    if (xy && (xy.x > 0 && xy.y > 0)) {
+        console.log('长按点赞', xy)
+        longClick(xy.x, xy.y)
+        sleep(1000)
+    }
 
 } catch (error) {
     console.error('==eeeee====', error)

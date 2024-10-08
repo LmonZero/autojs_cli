@@ -34,17 +34,28 @@ function ksGuangao(times) {
             break;
         }
         sleep(1000 * 30)
-        back();
-        sleep(1000 * 2)
-        if (text('领取奖励').findOne(1000)) {
-            console.log('继续领奖励')
-            let xy = text('领取奖励').findOne(1000).center()
-            click(xy.x, xy.y)
+
+        let stop = false
+        for (let j = 0; j < 2; j++) {
+            back();
             sleep(1000 * 2)
-        } else {
-            console.log('无法继续看视频')
+            if (text('领取奖励').findOne(1000)) {
+                console.log('继续领奖励')
+                let xy = text('领取奖励').findOne(1000).center()
+                click(xy.x, xy.y)
+                sleep(1000 * 2)
+                stop = false
+                break;
+            } else {
+                console.log('无法继续看视频', j)
+                stop = true
+            }
+        }
+
+        if (stop) {
             break;
         }
+
     }
 
     if (text('坚持退出').findOne(1000)) {
@@ -123,6 +134,21 @@ function task() {
     let xy = text('去赚钱').findOne(1000).center()
     click(xy.x, xy.y)
     sleep(1000 * 15)
+
+    try {
+        if (id("like_button").findOne(1000)) {
+            console.log('点赞')
+            let xy = id("like_button").findOne(1000).center()
+            console.log('点赞', xy)
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
+                longClick(xy.x, xy.y)
+                sleep(1000)
+            }
+        }
+    } catch (error) {
+        console.log('点赞失败', error)
+    }
 
     if (!text('我的金币').findOne(5000)) {
         console.log('<我的金币> 不存在 没有进入任务页面')
@@ -217,9 +243,10 @@ function shipingTask() {
     try {
         if (id("like_button").findOne(1000)) {
             console.log('点赞')
-            xy = id("like_button").findOne(1000).center()
+            let xy = id("like_button").findOne(1000).center()
             console.log('点赞', xy)
-            if (xy && xy.x > 0 && xy.y > 0) {
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
                 sleep(1000)
             }
@@ -245,21 +272,39 @@ function shipingTask() {
         return code
     }
 
-    if (text('看广告得16000金币').findOne(1000)) {
-        let val = text('看广告得16000金币').findOne(1000).parent().brother(1).text()
+    // if (text('看广告得16000金币').findOne(1000)) {
+    //     let val = text('看广告得16000金币').findOne(1000).parent().brother(1).text()
 
-        if (val == '明天再来') {
-            console.log('明天再来,看广告得16000金币')
-            return 1
-        }
-    }
+    //     if (val == '明天再来') {
+    //         console.log('明天再来,看广告得16000金币')
+    //         return 1
+    //     }
+    // }
 
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
         if (text('看广告得16000金币').findOne(1000)) {
-            console.log('1看广告得16000金币', className("android.widget.TextView").text("看广告得16000金币").findOne(1000).click())
-            sleep(1000 * 2)
-            ksGuangao(8)
+            let val = text('看广告得16000金币').findOne(1000).parent().brother(1).text()
+
+            if (val == '明天再来') {
+                console.log('明天再来,看广告得16000金币')
+            } else {
+                console.log('1看广告得16000金币', className("android.widget.TextView").text("看广告得16000金币").findOne(1000).click())
+                sleep(1000 * 2)
+                ksGuangao(10)
+            }
+        }
+
+        if (text('看广告得32万金币').findOne(1000)) {
+            let val = text('看广告得32万金币').findOne(1000).parent().brother(1).text()
+
+            if (val == '明天再来') {
+                console.log('明天再来,看广告得32万金币')
+            } else {
+                console.log('1看广告得32万金币', className("android.widget.TextView").text("看广告得32万金币").findOne(1000).click())
+                sleep(1000 * 2)
+                ksGuangao(10)
+            }
         }
     }
 
@@ -287,9 +332,10 @@ function shiping1Task() {
     try {
         if (id("like_button").findOne(1000)) {
             console.log('点赞')
-            xy = id("like_button").findOne(1000).center()
+            let xy = id("like_button").findOne(1000).center()
             console.log('点赞', xy)
-            if (xy && xy.x > 0 && xy.y > 0) {
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
                 sleep(1000)
             }
@@ -411,10 +457,13 @@ function shiping2Task() {
 
             if (id("like_button").findOne(1000)) {
                 console.log('点赞')
-                xy = id("like_button").findOne(1000).center()
+                let xy = id("like_button").findOne(1000).center()
                 console.log('点赞', xy)
-                longClick(xy.x, xy.y)
-                sleep(1000)
+                if (xy && (xy.x > 0 && xy.y > 0)) {
+                    console.log('长按点赞', xy)
+                    longClick(xy.x, xy.y)
+                    sleep(1000)
+                }
 
             }
         }
@@ -564,9 +613,27 @@ function shiping3Task() {
         console.log(appName, '启动失败')
         return code
     }
-    sleep(1000 * 10)
+    sleep(1000 * 15)
+
+    try {
+        if (id("like_button").findOne(1000)) {
+            console.log('点赞')
+            let xy = id("like_button").findOne(1000).center()
+            console.log('点赞', xy)
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
+                longClick(xy.x, xy.y)
+                sleep(1000)
+            }
+        }
+    } catch (error) {
+        console.log('点赞失败', error)
+    }
+
     back()
     sleep(1000 * 5)
+
+
 
     if (!text('去赚钱').findOne(1000)) {
         console.log('去赚钱不存在')
@@ -631,7 +698,22 @@ function shiping4Task() {
         console.log(appName, '启动失败')
         return code
     }
-    sleep(1000 * 10)
+    sleep(1000 * 15)
+
+    try {
+        if (id("like_button").findOne(1000)) {
+            console.log('点赞')
+            let xy = id("like_button").findOne(1000).center()
+            console.log('点赞', xy)
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
+                longClick(xy.x, xy.y)
+                sleep(1000)
+            }
+        }
+    } catch (error) {
+        console.log('点赞失败', error)
+    }
     back()
     sleep(1000 * 5)
 
@@ -721,6 +803,22 @@ function guanjieTask() {
         return code
     }
     sleep(1000 * 8)
+
+    try {
+        if (id("like_button").findOne(1000)) {
+            console.log('点赞')
+            let xy = id("like_button").findOne(1000).center()
+            console.log('点赞', xy)
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
+                longClick(xy.x, xy.y)
+                sleep(1000)
+            }
+        }
+    } catch (error) {
+        console.log('点赞失败', error)
+    }
+
     back()
     sleep(1000 * 2)
 
@@ -847,11 +945,58 @@ module.exports = () => {
         flag = autojsUtils.unlock('lmon.com')
         autojsUtils.media(0)
 
-
         for (let index = 0; index < 5; index++) {
             try {
                 console.log('执行1第', index + 1, '次')
                 let code = task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = shiping1Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行0第', index + 1, '次')
+                let code = shipingTask()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行0任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = shiping1Task()
                 if (code == 0) {
                     autojsUtils.close(appName)
                     console.log(`${itemName}任务执行失败,再次执行`)
