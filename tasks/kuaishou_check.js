@@ -18,6 +18,9 @@ if (!autojsUtils.checkMiuiPermission(10021)) {
 var width = device.width;
 var height = device.height;
 
+//快手全局点站
+var gXY = null
+
 // 输出屏幕分辨率
 console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
@@ -91,6 +94,10 @@ function ksShiping(times) {
                     if (xy && xy.x > 0 && xy.y > 0) {
                         longClick(xy.x, xy.y)
                         sleep(1000)
+                    } else if (gXY) {
+                        console.log('全局变量点赞==', gXY)
+                        longClick(gXY.x, gXY.y)
+                        sleep(1000)
                     }
                 }
             } catch (error) {
@@ -129,6 +136,7 @@ function task() {
             let xy = id("like_button").findOne(1000).center()
             console.log('点赞', xy)
             if (xy && (xy.x > 0 && xy.y > 0)) {
+                gXY = xy
                 console.log('长按点赞', xy)
                 longClick(xy.x, xy.y)
                 sleep(3000)
@@ -275,6 +283,7 @@ function shipingTask() {
             console.log('点赞', xy)
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
+                gXY = xy
                 longClick(xy.x, xy.y)
                 sleep(3000)
             }
@@ -364,6 +373,8 @@ function shiping1Task() {
             console.log('点赞', xy)
             if (xy && (xy.x > 0 && xy.y > 0)) {
                 console.log('长按点赞', xy)
+                gXY = xy
+
                 longClick(xy.x, xy.y)
                 sleep(3000)
             }
