@@ -771,24 +771,24 @@ function shiping4Task() {
         return code
     }
 
-    let val = text('看50次直播领金币').findOne(1000)
+    let val = text('看6次直播领金币').findOne(1000)
     if (!val) {
-        console.log('看50次直播领金币不存在')
+        console.log('看6次直播领金币不存在')
         return code
     }
     let t = val.parent().brother(1).text()
-    console.log('看50次直播领金币', t)
+    console.log('看6次直播领金币', t)
     if (t == '已完成') {
-        console.log('看50次直播领金币', '任务已经完成')
+        console.log('看6次直播领金币', '任务已经完成')
         return 1
     }
 
-    console.log('看50次直播领金币')
+    console.log('看6次直播领金币')
     if (val.click()) {
         sleep(1000 * 8)
 
         for (let index = 0; index < 6; index++) {
-            console.log('看50次直播领金币', index)
+            console.log('看6次直播领金币', index)
             if (!text('看直播领金币').findOne(1000)) {
                 console.log('看直播 跑飞了。。')
                 break
@@ -828,6 +828,118 @@ function shiping4Task() {
     console.log(`执行${itemName}任务结束`);
     return 1
 }
+
+
+
+function shiping5Task() {
+    let code = 0
+    console.log(`开始执行${itemName}任务shiping4Task`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 5)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 15)
+
+    try {
+        if (id("like_button").findOne(1000)) {
+            console.log('点赞')
+            let xy = id("like_button").findOne(1000).center()
+            console.log('点赞', xy)
+            if (xy && (xy.x > 0 && xy.y > 0)) {
+                console.log('长按点赞', xy)
+                longClick(xy.x, xy.y)
+                sleep(3000)
+            }
+        }
+    } catch (error) {
+        console.log('点赞失败', error)
+    }
+    back()
+    sleep(1000 * 5)
+
+    if (!text('去赚钱').findOne(1000)) {
+        console.log('去赚钱不存在')
+        return code
+    }
+
+    let xy = text('去赚钱').findOne(1000).center()
+    click(xy.x, xy.y)
+    sleep(1000 * 15)
+
+    console.log('去做任务-点赞任务')
+    if (!text('我的金币').findOne(5000)) {
+        console.log('<我的金币> 不存在 没有进入任务页面')
+        return code
+    }
+
+    let val = text('看50次直播领金币').findOne(1000)
+    if (!val) {
+        console.log('看50次直播领金币不存在')
+        return code
+    }
+    let t = val.parent().brother(1).text()
+    console.log('看50次直播领金币', t)
+    if (t == '已完成') {
+        console.log('看50次直播领金币', '任务已经完成')
+        return 1
+    }
+
+    console.log('看50次直播领金币')
+    if (val.click()) {
+        sleep(1000 * 8)
+
+        for (let index = 0; index < 6; index++) {
+            console.log('看50次直播领金币', index)
+
+            if (text('规则').findOne(1000)) {
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 600)
+                sleep(1000 * 6)
+
+                text('看直播领金币').findOne(1000).parent().brother(1).child(0).child(1).child(0).click()
+                sleep(1000 * 35)
+            }
+
+            for (let i = 0; i < 3; i++) {
+                back()
+                sleep(1000 * 1)
+
+                if (text('继续观看').findOne(1000)) {
+                    text('继续观看').findOne(1000).click()
+                    sleep(1000 * 10)
+                }
+
+                if (text('领取奖励').findOne(1000)) {
+                    text('领取奖励').findOne(1000).click()
+                    sleep(1000 * 35)
+                } else {
+                    if (text('放弃奖励').findOne(1000)) {
+                        text('放弃奖励').findOne(1000).click()
+                        sleep(1000 * 2)
+                    }
+                }
+
+                if (text('继续赚钱金币').findOne(1000)) {
+                    text('继续赚钱金币').findOne(1000).click()
+                    sleep(1000 * 2)
+                    break;
+                }
+            }
+
+
+        }
+    }
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
 
 function guanjieTask() {
     let code = 0
@@ -1124,6 +1236,23 @@ module.exports = () => {
                 }
             } catch (error) {
                 console.log('执行1任务报错', error)
+            }
+
+        }
+
+        // shiping4Task //看6次 直播已经没有了
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行5第', index + 1, '次')
+                let code = shiping5Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行4任务报错', error)
             }
 
         }
