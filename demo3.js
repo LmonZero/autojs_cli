@@ -164,13 +164,15 @@ try {
     //     // gestures([0, 800, [xy.x, xy.y], [Math.ceil((width - 100) / 2), xy.y]], [30, 500, [Math.ceil((width - 100) / 2), xy.y], [width - 100, xy.y]])
     //     randomSwipe(xy.x, xy.y, width - 100, xy.y)
     // }
-    console.log('====', text('分享').findOne(2000).parent().parent())
-    let xy = text('收藏').findOne(2000).parent().parent().child(1).center()
-    console.log('点赞开始', xy)
-    if (xy && xy.x > 0 && xy.y > 0) {
-        click(xy.x, xy.y)
-        sleep(1000 * 2)
-    }
+    // console.log('====', text('分享').findOne(2000).parent().parent())
+    // let xy = text('收藏').findOne(2000).parent().parent().child(1).center()
+    // console.log('点赞开始', xy)
+    // if (xy && xy.x > 0 && xy.y > 0) {
+    //     click(xy.x, xy.y)
+    //     sleep(1000 * 2)
+    // }
+
+    console.log('====', text('明日可领').findOne(2000))
 
 } catch (error) {
     console.error('==eeeee====', error)

@@ -21,12 +21,6 @@ dewu_check()
 console.log('2 dewu_check 1s')
 sleep(1000)
 
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
-sleep(1000)
-
-
 console.log('闲鱼任务')
 xianyu_check()
 console.log('1 xianyu_check 1s')
@@ -179,15 +173,6 @@ dysc_check()
 console.log('3 dysc_check 1s')
 sleep(1000)
 
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
-sleep(1000)
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
-sleep(1000)
-
 
 dysc_check()
 console.log('4 dysc_check 1s')
@@ -218,15 +203,6 @@ sleep(1000)
 
 dysc_check()
 console.log('9 dysc_check 1s')
-sleep(1000)
-
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
-sleep(1000)
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
 sleep(1000)
 
 
@@ -278,16 +254,7 @@ sleep(1000)
 
 console.log('快手任务')
 kuaishou_check()
-console.log('kuaishou_check 1s')
-sleep(1000)
-
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
-sleep(1000)
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
+console.log('3kuaishou_check 1s')
 sleep(1000)
 
 
@@ -297,16 +264,7 @@ console.log('1 dewu_check 1s')
 sleep(1000)
 
 kuaishou_check()
-console.log('3 kuaishou_check 1s')
-sleep(1000)
-
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
-sleep(1000)
-console.log('支付宝任务')
-zfb_check()
-console.log('1 zfb_check 1s')
+console.log('4 kuaishou_check 1s')
 sleep(1000)
 
 

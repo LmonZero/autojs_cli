@@ -33,6 +33,12 @@ function zfbShiping(times) {
 
         console.log(i, '滑动,休息15s')
         swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+
+        if (text('点击进入直播间').findOne(2000)) {
+            console.log('是直播,划走')
+            swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+        }
+
         sleep(1000 * 15)
         let delay = Math.ceil(Math.random() * 15)
         console.log('随机', delay)
@@ -108,6 +114,14 @@ function taskCk() {
         }
     }
 
+
+
+    if (!text('发现').findOne(2000)) {
+        console.log('发现不存在,跑飞了？？')
+        return code
+    }
+
+
     sleep(1000 * 5)
     autojsUtils.close(appName)
     home()
@@ -139,7 +153,17 @@ function task() {
     let xy = text('视频').findOne(1000).center()
     click(xy.x, xy.y)
     sleep(1000 * 10)
-
+    // 图片识别失败 没办法
+    // let img = autojsUtils.capScreen()
+    // let small = images.read('./png/zfb_ck03.jpg')
+    // let task_png = autojsUtils.getPngCenter(small, img, 0.6)
+    // small.recycle()
+    // if (task_png) {
+    //     console.log('今日视频已经上限')
+    // }
+    // if (!task_png) {
+    //     zfbShiping(30)
+    // }
     zfbShiping(30)
 
     sleep(1000 * 5)

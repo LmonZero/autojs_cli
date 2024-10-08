@@ -22,7 +22,7 @@ var height = device.height;
 console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
 function ksGuangao(times) {
-    console.log('开始抖音广告')
+    console.log('开始快手广告')
     sleep(2000)
     for (let i = 0; i < times; i++) {
         console.log('第' + (i + 1) + '次')
@@ -78,7 +78,7 @@ function ksShiping(times) {
                     xy = id("like_button").findOne(1000).center()
                     console.log('点赞', xy)
                     if (xy && xy.x > 0 && xy.y > 0) {
-                        click(xy.x, xy.y)
+                        longClick(xy.x, xy.y)
                         sleep(1000)
                     }
                 }
@@ -220,7 +220,7 @@ function shipingTask() {
             xy = id("like_button").findOne(1000).center()
             console.log('点赞', xy)
             if (xy && xy.x > 0 && xy.y > 0) {
-                click(xy.x, xy.y)
+                longClick(xy.x, xy.y)
                 sleep(1000)
             }
         }
@@ -290,7 +290,7 @@ function shiping1Task() {
             xy = id("like_button").findOne(1000).center()
             console.log('点赞', xy)
             if (xy && xy.x > 0 && xy.y > 0) {
-                click(xy.x, xy.y)
+                longClick(xy.x, xy.y)
                 sleep(1000)
             }
         }
@@ -413,7 +413,7 @@ function shiping2Task() {
                 console.log('点赞')
                 xy = id("like_button").findOne(1000).center()
                 console.log('点赞', xy)
-                click(xy.x, xy.y)
+                longClick(xy.x, xy.y)
                 sleep(1000)
 
             }
@@ -748,40 +748,41 @@ function guanjieTask() {
     if (t == '已领取') {
         console.log('逛街领金币', '任务已经完成')
         return 1
-    }
+    } else {
+        console.log('逛街取金币')
+        if (val.click()) {
+            for (let index = 0; index < 10; index++) {
+                console.log('滑动下上', index)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
+                sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
+                sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
+                sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
+                sleep(1000 * 5)
 
-    console.log('逛街取金币')
-    if (val.click()) {
-        for (let index = 0; index < 10; index++) {
-            console.log('滑动下上', index)
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-            sleep(1000 * 5)
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
-            sleep(1000 * 5)
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-            sleep(1000 * 5)
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
-            sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
+                sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
+                sleep(1000 * 5)
 
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-            sleep(1000 * 5)
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
-            sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
+                sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
+                sleep(1000 * 5)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
+                sleep(1000 * 5)
 
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-            sleep(1000 * 5)
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
-            sleep(1000 * 5)
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-            sleep(1000 * 5)
-
-            back()
-            sleep(1000 * 2)
-            if (text('领取奖励').findOne(1000)) {
-                let xy = text('领取奖励').findOne(1000).center()
-                click(xy.x, xy.y)
-                sleep(1000 * 1)
+                back()
+                sleep(1000 * 2)
+                if (text('领取奖励').findOne(1000)) {
+                    let xy = text('领取奖励').findOne(1000).center()
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+                }
             }
+
         }
 
     }
@@ -845,6 +846,7 @@ module.exports = () => {
     try {
         flag = autojsUtils.unlock('lmon.com')
         autojsUtils.media(0)
+
 
         for (let index = 0; index < 5; index++) {
             try {
