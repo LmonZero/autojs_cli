@@ -129,6 +129,69 @@ function taskCk() {
     return 1
 }
 
+function taskCk1() {
+    let code = 0
+    console.log(`开始执行${itemName}任务taskCk1`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 1)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 5)
+    // back()
+    // sleep(1000 * 2)
+
+    if (!text('视频').findOne(1000)) {
+        console.log('视频不存在')
+        return code
+    }
+
+    let xy = text('视频').findOne(1000).center()
+    click(xy.x, xy.y)
+    sleep(1000 * 10)
+
+    console.log('开始签到')
+    // zfb_ck01
+    let img = autojsUtils.capScreen()
+    let small = images.read('./png/zfb_ck01.jpg')
+    let task_png = autojsUtils.getPngCenter(small, img, 0.6)
+    small.recycle()
+    if (task_png) {
+        console.log('进入签到')
+        click(task_png[0], task_png[1])
+        sleep(1000 * 5)
+
+        if (text('去领取').findOne(1000)) {
+            let xy = text('去领取').findOne(1000).center()
+            click(xy.x, xy.y)
+            sleep(1000 * 3)
+            if (text('立即领取').findOne(1000)) {
+                let xy = text('立即领取').findOne(1000).center()
+                click(xy.x, xy.y)
+                sleep(1000 * 2)
+            }
+        }
+    }
+
+
+
+    if (!text('发现').findOne(2000)) {
+        console.log('发现不存在,跑飞了？？')
+        return code
+    }
+
+
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
 function task() {
     let code = 0
     console.log(`开始执行${itemName}任务task`)
@@ -185,6 +248,22 @@ module.exports = () => {
             try {
                 console.log('执行1第', index + 1, '次')
                 let code = taskCk()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 2; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = taskCk1()
                 if (code == 0) {
                     autojsUtils.close(appName)
                     console.log(`${itemName}任务执行失败,再次执行`)

@@ -3,7 +3,7 @@ autojsUtils.auth()
 
 const appName = 'com.ss.android.ugc.livelite'
 
-const itemName = '抖音商城签到'
+const itemName = '抖音商城养号任务'
 
 if (!auto.service) {
     console.log('无无障碍权限')
@@ -259,57 +259,40 @@ function shipingTask() {
         sleep(1000 * 2)
     }
 
+    console.log('先逛首页')
+    for (let index = 0; index < 10; index++) {
+        swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 300, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 3000)
+        sleep(1000 * 1)
+    }
 
     let ck = text('视频').findOne(2000)
     if (!ck) {
-        console.log('找不到签到入口')
+        console.log('找不到入口')
         return code
     }
 
-    let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
-    console.log('点击入口', xy)
-    click(xy.x, xy.y)
-    sleep(5 * 1000)
+    console.log('点击视频')
+    let ship_xy = ck.center()
+    click(ship_xy.x, ship_xy.y)
+    sleep(1000 * 5)
 
-    console.log('检查是否在签到界面')
-    if (!text('我的金币').findOne(1000)) {
-        console.log('不在签到界面')
-        return code
-    }
-
-    console.log('看广告视频')
-    img = autojsUtils.capScreen()
-    let small = images.read('./png/dy_ck7.jpg')
-    let task_png = autojsUtils.getPngCenter(small, img)
-    small.recycle()
-    if (task_png) {
-        click(task_png[0], task_png[1])
-        sleep(1000 * 3)
-        dyGuangao(5)
-    }
-
-    console.log('看视频')
-
-    if (text('看视频赚金币').findOne(2000)) {
-        let xy = text('看视频赚金币').findOne(2000).center()
-        click(xy.x, xy.y)
-        sleep(1000 * 2)
-        if (text('推荐').findOne(1000)) {
-            console.log('进入推荐视频界面')
-
-
-            for (let i = 0; i < 3; i++) {
-                console.log(i, '滑动,休息30s')
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
-                sleep(1000 * 20)
-                let delay = Math.ceil(Math.random() * 20)
-                console.log('随机', delay)
-                sleep(1000 * delay)
+    if (text('推荐').findOne(1000)) {
+        console.log('进入推荐视频界面')
+        for (let i = 0; i < 10; i++) {
+            console.log(i, '滑动')
+            swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
+            if (text('点击进入直播间').findOne(2000)) {
+                console.log('点击进入直播间,划走哦')
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
             }
-
+            console.log('观看1分钟')
+            sleep(1000 * 60 * 1)
+            let delay = Math.ceil(Math.random() * 20)
+            console.log('随机', delay)
+            sleep(1000 * delay)
         }
-    }
 
+    }
 
     sleep(1000 * 5)
     autojsUtils.close(appName)

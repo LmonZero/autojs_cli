@@ -174,16 +174,34 @@ try {
 
     // console.log('====', text('点击进入直播间').findOne(2000))
 
-    if (id("like_button").findOne(1000)) {
-        console.log('点赞')
-        let xy = id("like_button").findOne(1000).center()
-        console.log('点赞', xy)
-        if (xy && (xy.x > 0 && xy.y > 0)) {
-            console.log('长按点赞', xy)
-            longClick(xy.x, xy.y)
-            sleep(2000)
-        }
-    }
+    // if (id("like_button").findOne(1000)) {
+    //     console.log('点赞')
+    //     let xy = id("like_button").findOne(1000).center()
+    //     console.log('点赞', xy)
+    //     if (xy && (xy.x > 0 && xy.y > 0)) {
+    //         console.log('长按点赞', xy)
+    //         longClick(xy.x, xy.y)
+    //         sleep(2000)
+    //     }
+    // }
+
+    // console.log('====', text('商城').findOne(2000))
+    // if (text('连续签到7天').findOne(2000)) {
+    //     let xy = text('连续签到7天').findOne(2000).brother(5).center()
+    //     click(xy.x, xy.y)
+    //     sleep(1000 * 5)
+    // }
+
+    // console.log('====', text('猜你想搜').findOne(2000).brother(7).center())
+    // let xy = text('猜你想搜').findOne(2000).brother(7).center()
+    // click(xy.x, xy.y)
+
+    // console.log('====', text('综合').findOne(2000).parent().parent().parent().parent().parent().parent().parent().brother(1).center())
+    // let xy = text('综合').findOne(2000).parent().parent().parent().parent().parent().parent().parent().brother(1).center()
+    // click(xy.x, xy.y)
+
+
+    console.log('====', text('去提现').findOne(2000))
 
 } catch (error) {
     console.error('==eeeee====', error)

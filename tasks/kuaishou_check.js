@@ -81,6 +81,16 @@ function ksShiping(times) {
     for (let i = 0; i < times; i++) {
         console.log(i, '滑动,休息10s')
         swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+        sleep(1000 * 1)
+        back();
+        sleep(1000 * 5)
+        if (text('点击进入直播间').findOne(1000)) {
+            swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+            sleep(1000 * 1)
+            back();
+            sleep(1000 * 2)
+        }
+
         sleep(1000 * 10)
         let delay = Math.ceil(Math.random() * 20)
         console.log('随机', delay)
@@ -145,20 +155,7 @@ function task() {
     } catch (error) {
         console.log('点赞失败', error)
     }
-    try {
-        if (id("like_button").findOne(1000)) {
-            console.log('点赞')
-            let xy = id("like_button").findOne(1000).center()
-            console.log('点赞', xy)
-            if (xy && (xy.x > 0 && xy.y > 0)) {
-                console.log('长按点赞', xy)
-                longClick(xy.x, xy.y)
-                sleep(3000)
-            }
-        }
-    } catch (error) {
-        console.log('点赞失败', error)
-    }
+
     back()
     sleep(1000 * 2)
 
@@ -409,7 +406,7 @@ function shiping1Task() {
         if (val != '已完成') {
             console.log('看视频赚金币', className("android.widget.TextView").text("看视频赚金币").findOne(1000).click())
             sleep(1000 * 2)
-            ksShiping(30)
+            ksShiping(5)
         }
     }
 
@@ -787,7 +784,7 @@ function shiping4Task() {
     if (val.click()) {
         sleep(1000 * 8)
 
-        for (let index = 0; index < 6; index++) {
+        for (let index = 0; index < 3; index++) {
             console.log('看6次直播领金币', index)
             if (!text('看直播领金币').findOne(1000)) {
                 console.log('看直播 跑飞了。。')
@@ -828,8 +825,6 @@ function shiping4Task() {
     console.log(`执行${itemName}任务结束`);
     return 1
 }
-
-
 
 function shiping5Task() {
     let code = 0
@@ -893,7 +888,7 @@ function shiping5Task() {
     if (val.click()) {
         sleep(1000 * 8)
 
-        for (let index = 0; index < 6; index++) {
+        for (let index = 0; index < 3; index++) {
             console.log('看50次直播领金币', index)
 
             if (text('规则').findOne(1000)) {
@@ -953,7 +948,6 @@ function shiping5Task() {
     return 1
 }
 
-
 function guanjieTask() {
     let code = 0
     console.log(`开始执行${itemName}任务guanjieTask`)
@@ -1001,6 +995,8 @@ function guanjieTask() {
         return code
     }
 
+    swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 800, 1500)
+
     let val = text('逛街领金币').findOne(1000)
     if (!val) {
         console.log('逛街领金币不存在')
@@ -1013,28 +1009,34 @@ function guanjieTask() {
     } else {
         console.log('逛街取金币')
         if (val.click()) {
-            for (let index = 0; index < 10; index++) {
-                console.log('滑动下上', index)
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-                sleep(1000 * 5)
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
-                sleep(1000 * 5)
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-                sleep(1000 * 5)
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
+            sleep(1000 * 3)
+
+            if (!text('更多商品').findOne(1000)) {
+                console.log('进入失败')
+                return code
+            }
+
+            if (text('服务器开小差了，请稍后再来').findOne(1000)) {
+                console.log('进入加载失败')
+                return code
+            }
+
+            for (let index = 0; index < 3; index++) {
+                console.log('滑动', index)
+                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 1000)
                 sleep(1000 * 5)
 
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-                sleep(1000 * 5)
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
-                sleep(1000 * 5)
+                for (let index = 0; index < 3; index++) {
+                    console.log('随便点进去一个直播')
 
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-                sleep(1000 * 5)
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2) - 500, Math.ceil(width / 2), Math.ceil(height / 2) + 200, 5000)
-                sleep(1000 * 5)
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2), Math.ceil(width / 2), Math.ceil(height / 2) - 500, 5000)
-                sleep(1000 * 5)
+                    click(Math.ceil(width / 2) + 100, Math.ceil(height / 2))
+                    console.log('随便点进去一个直播3分钟')
+                    sleep(1000 * 60 * 3)
+                    if (!text('更多商品').findOne(1000)) {
+                        break;
+                    }
+
+                }
 
                 back()
                 sleep(1000 * 2)
@@ -1159,38 +1161,6 @@ module.exports = () => {
 
         for (let index = 0; index < 3; index++) {
             try {
-                console.log('执行1第', index + 1, '次')
-                let code = shiping1Task()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
-            }
-
-        }
-
-        for (let index = 0; index < 3; index++) {
-            try {
-                console.log('执行0第', index + 1, '次')
-                let code = shipingTask()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行0任务报错', error)
-            }
-
-        }
-
-        for (let index = 0; index < 3; index++) {
-            try {
                 console.log('执行2第', index + 1, '次')
                 let code = shiping2Task()
                 if (code == 0) {
@@ -1223,6 +1193,22 @@ module.exports = () => {
 
         for (let index = 0; index < 3; index++) {
             try {
+                console.log('执行0第', index + 1, '次')
+                let code = shipingTask()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行0任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 3; index++) {
+            try {
                 console.log('执行guanjieTask第', index + 1, '次')
                 let code = guanjieTask()
                 if (code == 0) {
@@ -1233,22 +1219,6 @@ module.exports = () => {
                 }
             } catch (error) {
                 console.log('执行guanjieTask任务报错', error)
-            }
-
-        }
-
-        for (let index = 0; index < 3; index++) {
-            try {
-                console.log('执行1第', index + 1, '次')
-                let code = shiping1Task()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
             }
 
         }
