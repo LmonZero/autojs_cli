@@ -21,7 +21,7 @@ var height = device.height;
 console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
 
-function dyShiping(times) {
+function dyShiping(times, t20) {
     console.log('开始抖音视频')
     sleep(2000)
     for (let i = 0; i < times; i++) {
@@ -33,8 +33,8 @@ function dyShiping(times) {
             swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
             sleep(1000 * 2)
         }
-        console.log('等待1分钟')
-        sleep(1000 * 62 * 1)
+        console.log('等待20s')
+        sleep(1000 * 20 * t20)
         let delay = Math.ceil(Math.random() * 15)
         console.log('随机', delay)
         sleep(1000 * delay)
@@ -55,7 +55,7 @@ function task() {
         console.log(appName, '启动失败')
         return code
     }
-    sleep(1000 * 10)
+    sleep(1000 * 8)
     back()
     sleep(1000 * 2)
 
@@ -65,7 +65,26 @@ function task() {
         sleep(1000 * 2)
     }
 
-    dyShiping(10)
+    dyShiping(5, 2)
+
+    if (!text('商城').findOne(2000)) {
+        console.log('未找到商城')
+        return code
+    }
+
+    if (text('商城').findOne(2000)) {
+        let xy = text('商城').findOne(2000).center()
+        console.log('点击商城')
+        click(xy.x, xy.y)
+        sleep(1000 * 3)
+
+        if (text('逛街').findOne(2000)) {
+            let xy = text('逛街').findOne(2000).center()
+            click(xy.x, xy.y)
+            sleep(1000 * 3)
+            dyShiping(10, 1)
+        }
+    }
 
     sleep(1000 * 5)
     autojsUtils.close(appName)

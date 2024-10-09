@@ -148,6 +148,18 @@ for (let i = 0; i < 3; i++) {
 
 for (let i = 0; i < 1; i++) {
     if (i == 0) {
+        console.log('抖音正常养号任务', i, 'all', all++)
+        dy_yanhao()
+        sleep(1000)
+    }
+    console.log('抖音正常任务', i, 'all', all++)
+    dy_check()
+    console.log('1 dyjishu_check 1s')
+    sleep(1000)
+}
+
+for (let i = 0; i < 1; i++) {
+    if (i == 0) {
         console.log('抖音极速养号任务', i, 'all', all++)
         dyjishu_yanhao()
         sleep(1000)
@@ -220,6 +232,17 @@ for (let i = 0; i < 1; i++) {
     sleep(1000)
 }
 
+for (let i = 0; i < 3; i++) {
+    if (i == 0) {
+        console.log('快手极速养号任务', i, 'all', all++)
+        kuaishou_yanhao()
+        sleep(1000)
+    }
+    console.log('快手极速任务', i, 'all', all++)
+    kuaishou_check()
+    console.log('kuaishou_check 1s')
+    sleep(1000)
+}
 
 
 exit()
