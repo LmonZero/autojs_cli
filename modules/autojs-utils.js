@@ -49,7 +49,7 @@ function bezierCreate(x1, y1, x2, y2, x3, y3, x4, y4) {
 }
 
 module.exports = {
-    greetingPrefix: 'ver-1.00.00.20240923',
+    greetingPrefix: 'ver-1.00.00.20241008',
     findTime: 2 * 1000,
     auth() {
         /* e.g. "lmon, AutoJs6 6.4.1" */
@@ -165,7 +165,8 @@ module.exports = {
                 return
             }
             console.log('开启线程')
-            sleep(1000)
+            toastLog(`截图`);
+            sleep(500)
             let img = images.captureScreen();
             sleep(20)
             console.log('截图完成')
