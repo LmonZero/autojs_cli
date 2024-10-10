@@ -167,6 +167,7 @@ function taskCk1() {
 
         if (text('去领取').findOne(1000)) {
             let xy = text('去领取').findOne(1000).center()
+            console.log('去领取', xy)
             click(xy.x, xy.y)
             sleep(1000 * 3)
             if (text('立即领取').findOne(1000)) {
@@ -174,6 +175,13 @@ function taskCk1() {
                 click(xy.x, xy.y)
                 sleep(1000 * 2)
             }
+        }
+
+        if (text('去预约').findOne(1000)) {
+            let xy = text('去预约').findOne(1000).center()
+            console.log('去预约', xy)
+            click(xy.x, xy.y)
+            sleep(1000 * 2)
         }
     }
 

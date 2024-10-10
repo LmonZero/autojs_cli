@@ -1,14 +1,45 @@
-const autojsUtils = require('./modules/autojs-utils');
 
-autojsUtils.auth();
+try {
+    var am = context.getSystemService(context.ACTIVITY_SERVICE);
 
-//打开弹窗
-//日志展示
-//脚本的启动、关闭
-let appName = 'com.taobao.taobao'
-console.log('打开app', appName, launchPackage('appName'))
-// setTimeout(() => { //pass
-//     console.log('关闭app', appName, shell(`am force-stop ${appName}`))
-// }, 1 * 1000)
+    var mi = new android.app.ActivityManager.MemoryInfo();
 
-exit();
+    am.getMemoryInfo(mi);
+
+    var totalMemory = mi.totalMem / (1024 * 1024);
+
+    var availableMemory = mi.availMem / (1024 * 1024);
+
+    var usedMemory = totalMemory - availableMemory;
+
+    log("总内存：" + totalMemory.toFixed(2) + "MB");
+
+    log("可用内存：" + availableMemory.toFixed(2) + "MB");
+
+    log("已用内存：" + usedMemory.toFixed(2) + "MB");
+
+    var runningAppList = am.getRunningAppProcesses();
+
+    for (var i = 0; i < runningAppList.size(); i++) {
+
+        var appProcessInfo = runningAppList.get(i);
+
+        var processName = appProcessInfo.processName;
+
+        var pid = appProcessInfo.pid;
+
+        var memoryInfo = am.getProcessMemoryInfo([pid]);
+
+        var memorySize = memoryInfo[0].getTotalPss() / 1024;
+
+        log("应用名称：" + processName);
+
+        log("内存占用：" + memorySize.toFixed(2) + "MB");
+
+    }
+
+    // Packages.java.lang.System.gc()
+
+} catch (error) {
+    console.log('123', error);
+}
