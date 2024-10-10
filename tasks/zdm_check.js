@@ -1,5 +1,5 @@
 const autojsUtils = require('../modules/autojs-utils');
-autojsUtils.auth()
+
 
 const appName = 'com.smzdm.client.android'
 
@@ -66,6 +66,7 @@ module.exports = () => {
     let flag = false
     try {
         flag = autojsUtils.unlock('lmon.com')
+        autojsUtils.auth()
         autojsUtils.showMem()
         for (let index = 0; index < 2; index++) {
             console.log('执行第', index + 1, '次')

@@ -1,6 +1,6 @@
 const autojsUtils = require('../modules/autojs-utils');
 
-autojsUtils.auth()
+
 
 const appName = 'com.kuaishou.nebula'
 
@@ -1110,6 +1110,7 @@ module.exports = () => {
     try {
         flag = autojsUtils.unlock('lmon.com')
         autojsUtils.media(0)
+        autojsUtils.auth()
         autojsUtils.showMem()
         for (let index = 0; index < 5; index++) {
             try {

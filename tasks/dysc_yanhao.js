@@ -1,5 +1,5 @@
 const autojsUtils = require('../modules/autojs-utils');
-autojsUtils.auth()
+
 
 const appName = 'com.ss.android.ugc.livelite'
 
@@ -306,6 +306,7 @@ module.exports = () => {
     try {
         flag = autojsUtils.unlock('lmon.com')
         autojsUtils.media(0)
+        autojsUtils.auth()
         autojsUtils.showMem()
         for (let index = 0; index < 3; index++) {
             console.log('执行1第', index + 1, '次')

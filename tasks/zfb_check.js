@@ -1,6 +1,6 @@
 const autojsUtils = require('../modules/autojs-utils');
 
-autojsUtils.auth()
+
 
 const appName = 'com.eg.android.AlipayGphone'
 
@@ -249,6 +249,7 @@ module.exports = () => {
     let flag = false
     try {
         flag = autojsUtils.unlock('lmon.com')
+        autojsUtils.auth()
         autojsUtils.media(0)
         // taskCk
         autojsUtils.showMem()

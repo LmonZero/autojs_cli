@@ -1,6 +1,6 @@
 const autojsUtils = require('../modules/autojs-utils');
 const appName = 'com.taobao.idlefish'
-autojsUtils.auth()
+
 
 const itemName = '咸鱼签到'
 const itemName1 = '咸鱼曝光任务'
@@ -480,6 +480,7 @@ module.exports = () => {
     let flag = false
     try {
         flag = autojsUtils.unlock('lmon.com')
+        autojsUtils.auth()
         autojsUtils.showMem()
         for (let index = 0; index < 3; index++) {
             console.log('执行第', index + 1, '次')
