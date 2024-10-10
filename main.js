@@ -21,25 +21,24 @@ const dyjishu_yanhao = require('./tasks/dyjishu_yanhao');
 
 const dy_check = require('./tasks/dy_check');
 const dy_yanhao = require('./tasks/dy_yanhao');
-const autojsUtils = require('./modules/autojs-utils');
 
 
 let all = 1
-autojsUtils.showMem()
+
 for (let i = 0; i < 3; i++) {
     console.log('得物任务', i, 'all', all++)
     dewu_check()
     console.log('1 dewu_check 1s')
     sleep(1000)
 }
-autojsUtils.showMem()
+
 for (let i = 0; i < 2; i++) {
     console.log('闲鱼任务', i, 'all', all++)
     xianyu_check()
     console.log('1 xianyu_check 1s')
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 3; i++) {
     console.log('得物任务', i, 'all', all++)
@@ -47,7 +46,7 @@ for (let i = 0; i < 3; i++) {
     console.log('1 dewu_check 1s')
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 1; i++) {
     console.log('网商银行任务', i, 'all', all++)
@@ -62,14 +61,14 @@ for (let i = 0; i < 1; i++) {
     lianxiang_check()
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 1; i++) {
     console.log('电信任务', i, 'all', all++)
     dianxing_check()
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 1; i++) {
     console.log('得物任务', i, 'all', all++)
@@ -78,7 +77,7 @@ for (let i = 0; i < 1; i++) {
     sleep(1000)
 }
 
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 1; i++) {
     console.log('网商银行任务', i, 'all', all++)
@@ -93,7 +92,7 @@ for (let i = 0; i < 1; i++) {
     lianxiang_check()
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 2; i++) {
     console.log('番茄任务', i, 'all', all++)
@@ -101,7 +100,7 @@ for (let i = 0; i < 2; i++) {
     console.log('1 fanqie_check 1s')
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 1; i++) {
     console.log('得物任务', i, 'all', all++)
@@ -109,7 +108,7 @@ for (let i = 0; i < 1; i++) {
     console.log('1 dewu_check 1s')
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 3; i++) {
     console.log('腾讯视频任务', i, 'all', all++)
@@ -117,14 +116,14 @@ for (let i = 0; i < 3; i++) {
     console.log('1 tenxun_check 1s')
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 1; i++) {
     console.log('电信任务', i, 'all', all++)
     dianxing_check()
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 
 for (let i = 0; i < 1; i++) {
@@ -133,7 +132,7 @@ for (let i = 0; i < 1; i++) {
     console.log('1 dewu_check 1s')
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let i = 0; i < 3; i++) {
     if (i == 0) {
@@ -145,7 +144,7 @@ for (let i = 0; i < 3; i++) {
     zfb_check()
     sleep(1000)
 }
-autojsUtils.showMem()
+
 
 for (let j = 0; j < 3; j++) {
     let times1 = 2
@@ -160,7 +159,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dyjishu_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
 
     for (let i = 0; i < times1; i++) {
@@ -174,7 +173,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dyjishu_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times1; i++) {
         if (i == 0) {
@@ -187,7 +186,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dysc_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times1 + 1; i++) {
         if (i == 0) {
@@ -200,7 +199,7 @@ for (let j = 0; j < 3; j++) {
         console.log('kuaishou_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times1; i++) {
         if (i == 0) {
@@ -212,7 +211,7 @@ for (let j = 0; j < 3; j++) {
         zfb_check()
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     console.log('ok111111111111111')
 
@@ -229,7 +228,7 @@ for (let j = 0; j < 3; j++) {
 
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
 
     for (let i = 0; i < times2; i++) {
@@ -243,7 +242,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dyjishu_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times2; i++) {
         if (i == 0) {
@@ -256,7 +255,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dysc_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times2 + 1; i++) {
         if (i == 0) {
@@ -269,7 +268,7 @@ for (let j = 0; j < 3; j++) {
         console.log('kuaishou_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     console.log('ok2222222222222222')
 
@@ -285,7 +284,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dyjishu_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
 
     for (let i = 0; i < times3; i++) {
@@ -294,7 +293,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dyjishu_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times3; i++) {
         console.log('抖音商城任务', i, 'all', all++)
@@ -302,7 +301,7 @@ for (let j = 0; j < 3; j++) {
         console.log('1 dysc_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times3 + 1; i++) {
         console.log('快手极速任务', i, 'all', all++)
@@ -310,14 +309,14 @@ for (let j = 0; j < 3; j++) {
         console.log('kuaishou_check 1s')
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
     for (let i = 0; i < times3 + 1; i++) {
         console.log('支付宝任务', i, 'all', all++)
         zfb_check()
         sleep(1000)
     }
-    autojsUtils.showMem()
+
 
 }
 

@@ -251,7 +251,7 @@ module.exports = () => {
         flag = autojsUtils.unlock('lmon.com')
         autojsUtils.media(0)
         // taskCk
-
+        autojsUtils.showMem()
         for (let index = 0; index < 2; index++) {
             try {
                 console.log('执行1第', index + 1, '次')

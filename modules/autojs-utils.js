@@ -164,12 +164,13 @@ module.exports = {
                 toastLog('请求截图失败');
                 return
             }
-            console.log('开启线程')
-            toastLog(`截图`);
+            // console.log('开启线程')
+            toastLog(`cap`);
             sleep(500)
             let img = images.captureScreen();
             sleep(20)
             console.log('截图完成')
+            // toastLog(`截图完成`);
             return img
         } catch (error) {
             console.error('==eeeee====', error)

@@ -21,7 +21,58 @@ var height = device.height;
 // 输出屏幕分辨率
 console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
+function dyGuangao(times) {
+    console.log('开始抖音广告')
+    sleep(2000)
+    for (let i = 0; i < times; i++) {
+        console.log('第' + (i + 1) + '次')
+        sleep(1000 * 5)
+        if (text('广告').findOne(1000)) {
+            console.log('广告进入成功')
+        }
+        sleep(1000 * 30)
+        back();
+        sleep(1000 * 2)
+        if (text('继续领奖励').findOne(1000)) {
+            console.log('继续领奖励')
+            let xy = text('继续领奖励').findOne(1000).center()
+            click(xy.x, xy.y)
+            sleep(1000 * 2)
+        } else {
+            if (text('领取奖励').findOne(1000)) {
+                console.log('领取奖励')
+                let xy = text('领取奖励').findOne(1000).center()
+                click(xy.x, xy.y)
+                sleep(1000 * 2)
+            } else {
+                console.log('无法继续看视频')
+                break;
+            }
+        }
+    }
 
+    if (text('坚持退出').findOne(1000)) {
+        console.log('坚持退出')
+        text('坚持退出').findOne(1000).click()
+    }
+
+    if (text('放弃奖励').findOne(1000)) {
+        console.log('放弃奖励')
+        text('放弃奖励').findOne(1000).click()
+    }
+
+    sleep(1000 * 2)
+    back();
+    sleep(1000 * 2)
+
+    if (text('评价并收下金币').findOne(2000)) {
+        console.log('评价并收下金币')
+        let xy = text('评价并收下金币').findOne(1000).center()
+        click(xy.x, xy.y)
+        sleep(1000 * 2)
+    }
+
+}
 function dyShiping(times) {
     console.log('开始抖音视频')
     sleep(2000)
@@ -206,6 +257,18 @@ function task2() {
         console.log('点击领取宝箱任务')
         click(task_png[0], task_png[1])
         sleep(1000 * 2)
+
+        img = autojsUtils.capScreen()
+        small = images.read('./png/dyjs_ck_06.jpg')
+        task_png = autojsUtils.getPngCenter(small, img, 0.6)
+
+        if (task_png) {
+            console.log('找到宝箱任务')
+            click(task_png[0], task_png[1])
+            sleep(1000 * 2)
+            dyGuangao(10)
+        }
+
     } else {
         console.log('没有找到宝箱任务')
     }
@@ -220,7 +283,7 @@ function task2() {
 
 function task3() {
     let code = 0
-    console.log(`开始执行${itemName}任务task1`)
+    console.log(`开始执行${itemName}任务task3`)
     autojsUtils.close(appName)
     // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
     home()
@@ -315,7 +378,7 @@ function task3() {
 
 function task4() {
     let code = 0
-    console.log(`开始执行${itemName}任务task1`)
+    console.log(`开始执行${itemName}任务task4`)
     autojsUtils.close(appName)
     // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
     home()
@@ -380,6 +443,144 @@ function task4() {
                 }
                 sleep(1000 * 2)
             }
+            break;
+        }
+    }
+
+
+
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
+function task5() {
+    let code = 0
+    console.log(`开始执行${itemName}任务task5`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 1)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 8)
+    back()
+    sleep(1000 * 2)
+
+    if (!text('朋友').findOne(2000)) {
+        console.log('朋友按钮不存在')
+        return code
+    }
+
+    let xy1 = text('朋友').findOne(2000).center()
+    let xy2 = text('消息').findOne(2000).center()
+    console.log('点击赚钱入口')
+    click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
+    sleep(1000 * 8)
+
+    console.log('检查是否进入赚钱入口')
+    let img = autojsUtils.capScreen()
+    let small = images.read('./png/dyjs_ck_01.jpg')
+    let task_png = autojsUtils.getPngCenter(small, img, 0.8)
+    small.recycle()
+
+    if (!task_png) {
+        console.log('没有进入，没有找到《赚钱任务》')
+        return code
+    }
+
+    for (let i = 0; i < 10; i++) {
+        console.log('看广告赚金币', i)
+        swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 300, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 2000)
+        sleep(1000 * 1)
+        img = autojsUtils.capScreen()
+        small = images.read('./png/dyjs_ck_07.jpg')
+        task_png = autojsUtils.getPngCenter(small, img, 0.9)
+        small.recycle()
+        if (task_png) {
+            console.log('点击看广告赚金币ok')
+            click(task_png[0], task_png[1])
+            sleep(1000 * 2)
+
+            if (text('反馈').findOne(2000)) {
+                console.log('进入看广告')
+
+                dyGuangao(10)
+            }
+            break;
+        }
+    }
+
+
+
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
+function task6() {
+    let code = 0
+    console.log(`开始执行${itemName}任务task6`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 1)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 8)
+    back()
+    sleep(1000 * 2)
+
+    if (!text('朋友').findOne(2000)) {
+        console.log('朋友按钮不存在')
+        return code
+    }
+
+    let xy1 = text('朋友').findOne(2000).center()
+    let xy2 = text('消息').findOne(2000).center()
+    console.log('点击赚钱入口')
+    click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
+    sleep(1000 * 8)
+
+    console.log('检查是否进入赚钱入口')
+    let img = autojsUtils.capScreen()
+    let small = images.read('./png/dyjs_ck_01.jpg')
+    let task_png = autojsUtils.getPngCenter(small, img, 0.8)
+    small.recycle()
+
+    if (!task_png) {
+        console.log('没有进入，没有找到《赚钱任务》')
+        return code
+    }
+
+    for (let i = 0; i < 10; i++) {
+        console.log('看指定视频得金币', i)
+        swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 300, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 2000)
+        sleep(1000 * 1)
+        img = autojsUtils.capScreen()
+        small = images.read('./png/dyjs_ck_08.jpg')
+        task_png = autojsUtils.getPngCenter(small, img, 0.9)
+        small.recycle()
+        if (task_png) {
+            console.log('看指定视频得金币ok')
+            click(task_png[0], task_png[1])
+            sleep(1000 * 2)
+
+            if (text('返回').findOne(2000)) {
+                dyShiping(10)
+                back()
+            }
+            break
         }
     }
 
@@ -393,13 +594,43 @@ function task4() {
 }
 
 
-
-
 module.exports = () => {
     let flag = false
     try {
         flag = autojsUtils.unlock('lmon.com')
         autojsUtils.media(0)
+        autojsUtils.showMem()
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task5()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task6()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
 
         for (let index = 0; index < 5; index++) {
             try {
@@ -466,23 +697,6 @@ module.exports = () => {
 
         }
 
-        for (let index = 0; index < 5; index++) {
-            try {
-                console.log('执行1第', index + 1, '次')
-                let code = task4()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
-            }
-
-        }
-
-
 
         for (let index = 0; index < 3; index++) {
             try {
@@ -496,38 +710,6 @@ module.exports = () => {
                 }
             } catch (error) {
                 console.log('task1执行1任务报错', error)
-            }
-
-        }
-
-        for (let index = 0; index < 5; index++) {
-            try {
-                console.log('执行3第', index + 1, '次')
-                let code = task3()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
-            }
-
-        }
-
-        for (let index = 0; index < 5; index++) {
-            try {
-                console.log('执行1第', index + 1, '次')
-                let code = task4()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
             }
 
         }
