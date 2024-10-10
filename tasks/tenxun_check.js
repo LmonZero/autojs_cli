@@ -81,7 +81,7 @@ function task() {
             console.log('开始刷广告', index)
             let small = images.read('./png/tengxun_video_task.jpg')
             let img = autojsUtils.capScreen()
-            console.log('截图完成')
+            // console.log('截图完成')
             let xyTask = autojsUtils.getPngCenter(small, img)
             small.recycle()
             if (xyTask) {

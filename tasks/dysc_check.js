@@ -209,6 +209,7 @@ function task() {
         img = autojsUtils.capScreen()
         small = images.read('./png/dy_ck4.jpg')
         task_png = autojsUtils.getPngCenter(small, img, 0.6)
+        small.recycle()
         console.log('检查是否一键抽奖', task_png)
 
         if (task_png) {
@@ -221,6 +222,7 @@ function task() {
         img = autojsUtils.capScreen()
         small = images.read('./png/dy_ck5.jpg')
         task_png = autojsUtils.getPngCenter(small, img, 0.6)
+        small.recycle()
         console.log('检查是否在立即抽奖', task_png)
         if (task_png) {
             console.log('点击立即抽奖')

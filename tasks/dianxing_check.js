@@ -55,10 +55,6 @@ function task() {
     console.log('图片对比发现<签到>')
     small = images.read('./png/dianxing_ck_btn.png')
     bigImg = autojsUtils.capScreen()
-    if (!bigImg) {
-        console.log('截图失败')
-        return code
-    }
     val = autojsUtils.getPngCenter(small, bigImg)
     small.recycle();
     console.log('签到图片对比结果', val)
@@ -88,6 +84,8 @@ function task() {
     console.log('图片对比发现<抽奖转盘>')
     small = images.read('./png/dianxing_ck_cjck.jpg')
     bigImg = autojsUtils.capScreen()
+    small.recycle()
+
     if (!bigImg) {
         console.log('截图失败')
         return code
@@ -100,11 +98,6 @@ function task() {
         sleep(1000 * 5)
         console.log('图片对比发现<抽奖>按钮')
         small = images.read('./png/dianxing_ck_cj_btn.jpg')
-
-        if (!bigImg) {
-            console.log('截图失败')
-            return code
-        }
         val = autojsUtils.getPngCenter(small, bigImg)
         small.recycle();
         console.log('抽奖按钮图片对比结果', val)
