@@ -85,7 +85,7 @@ function task() {
         if (shiping_in) {
             console.log('点击继续观看')
             click(shiping_in[0], shiping_in[1])
-            dyGuangao(5)
+            dyGuangao(10)
         }
     }
 
@@ -129,7 +129,7 @@ function task() {
             if (shiping_in) {
                 console.log('点击继续观看')
                 click(shiping_in[0], shiping_in[1])
-                dyGuangao(5)
+                dyGuangao(10)
             }
         }
 
@@ -298,7 +298,7 @@ function shipingTask() {
             console.log('进入推荐视频界面')
 
 
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 10; i++) {
                 console.log(i, '滑动,休息30s')
                 swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
                 sleep(1000 * 20)

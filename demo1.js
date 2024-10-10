@@ -1,5 +1,6 @@
 
 try {
+
     var am = context.getSystemService(context.ACTIVITY_SERVICE);
 
     var mi = new android.app.ActivityManager.MemoryInfo();
@@ -38,6 +39,7 @@ try {
 
     }
 
+    engines.stopAll();
     // Packages.java.lang.System.gc()
 
 } catch (error) {
