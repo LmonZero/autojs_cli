@@ -78,6 +78,7 @@ module.exports = {
                 console.log('关闭app', appName, offBtn.click())
             }
         }
+        this.showMem()
 
     },
     checkMiuiPermission(flag) {
@@ -282,7 +283,8 @@ module.exports = {
                 log("应用名称：" + processName);
 
                 log("内存占用：" + memorySize.toFixed(2) + "MB");
-
+                toastLog("内存占用：" + memorySize.toFixed(2) + "MB")
+                sleep(1000)
             }
 
             // Packages.java.lang.System.gc()
