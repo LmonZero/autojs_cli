@@ -201,7 +201,40 @@ try {
     // click(xy.x, xy.y)
 
 
-    console.log('====', text('去提现').findOne(2000))
+    // console.log('====', text('去提现').findOne(2000))
+
+    var thread
+    try {
+        thread = threads.start(function () {
+            sleep(500)
+
+            if (text('立即开始').findOne(3000)) {
+                text('立即开始').findOne(1000).click()
+            }
+            console.log('线程结束..')
+        });
+        if (!images.requestScreenCapture()) {
+            console.log('请求截图失败')
+            toastLog('请求截图失败');
+            return
+        }
+        // console.log('开启线程')
+        toastLog(`cap`);
+        sleep(500)
+        let img = images.captureScreen();
+        sleep(20)
+        console.log('截图完成')
+        // toastLog(`截图完成`);
+
+    } catch (error) {
+        console.error('==eeeee====', error)
+    } finally {
+        console.log('capScreen end thread && thread.isAlive()==', thread && thread.isAlive())
+        if (thread && thread.isAlive()) {
+            console.log('关闭确认线程')
+            thread.interrupt();
+        }
+    }
 
 } catch (error) {
     console.error('==eeeee====', error)
