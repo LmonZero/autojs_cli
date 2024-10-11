@@ -442,9 +442,9 @@ function shiping1Task() {
     return 1
 }
 
-function shiping2Task() {
+function shiping21Task() {
     let code = 0
-    console.log(`开始执行${itemName}任务shiping2Task`)
+    console.log(`开始执行${itemName}任务shiping21Task`)
     autojsUtils.close(appName)
     // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
     home()
@@ -457,7 +457,7 @@ function shiping2Task() {
     sleep(1000 * 10)
     back()
     sleep(1000 * 5)
-
+    ///////////////////////////////////
     if (!text('去赚钱').findOne(1000)) {
         console.log('去赚钱不存在')
         return code
@@ -484,10 +484,6 @@ function shiping2Task() {
                 if (text('点击进入直播间').findOne(1000)) {
                     swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
                     sleep(1000 * 1)
-                    swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
-                    sleep(1000 * 1)
-                    swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
-                    sleep(1000 * 1)
                 }
             }
 
@@ -505,14 +501,42 @@ function shiping2Task() {
         }
     }
 
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+function shiping22Task() {
+    let code = 0
+    console.log(`开始执行${itemName}任务shiping22Task`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 5)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 10)
+    back()
+    sleep(1000 * 5)
+
+    //////////////////////////////////////////
     if (!text('去赚钱').findOne(1000)) {
         console.log('去赚钱不存在')
         return code
     }
+
     xy = text('去赚钱').findOne(1000).center()
     click(xy.x, xy.y)
-    sleep(1000 * 5)
+    sleep(1000 * 8)
 
+    if (!text('我的金币').findOne(5000)) {
+        console.log('<我的金币> 不存在 没有进入任务页面')
+        return code
+    }
 
     if (text('收藏1个作品').findOne(1000)) {
         let val = text('收藏1个作品').findOne(1000).parent().brother(1).text()
@@ -549,9 +573,12 @@ function shiping2Task() {
 
     xy = text('去赚钱').findOne(1000).center()
     click(xy.x, xy.y)
-    sleep(1000 * 5)
+    sleep(1000 * 8)
 
-
+    if (!text('我的金币').findOne(5000)) {
+        console.log('<我的金币> 不存在 没有进入任务页面')
+        return code
+    }
     if (text('评论1个作品').findOne(1000)) {
         let val = text('评论1个作品').findOne(1000).parent().brother(1).text()
         if (val != '已完成') {
@@ -608,16 +635,39 @@ function shiping2Task() {
         }
     }
 
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+function shiping23Task() {
+    let code = 0
+    console.log(`开始执行${itemName}任务shiping23Task`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 5)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 10)
+    back()
+    sleep(1000 * 5)
+
     if (!text('去赚钱').findOne(1000)) {
         console.log('去赚钱不存在')
         return code
     }
-    desc("去赚钱").findOne(1000).click()
-    sleep(1000 * 5)
+    xy = text('去赚钱').findOne(1000).center()
+    click(xy.x, xy.y)
+    sleep(1000 * 8)
     //
     console.log('检查是否有宝箱')
     let img = autojsUtils.capScreen()
-    let small = images.read('./png/ks_ck_02.jpg')
+    let small = images.read('./png/ks_ck_ 02.jpg')
     let task_png = autojsUtils.getPngCenter(small, img, 0.8)
     small.recycle()
 
@@ -636,6 +686,7 @@ function shiping2Task() {
     console.log(`执行${itemName}任务结束`);
     return 1
 }
+
 
 function shiping3Task() {
     let code = 0
@@ -1162,8 +1213,41 @@ module.exports = () => {
 
         for (let index = 0; index < 3; index++) {
             try {
-                console.log('执行2第', index + 1, '次')
-                let code = shiping2Task()
+                console.log('执行21第', index + 1, '次')
+                let code = shiping21Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行2任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行22第', index + 1, '次')
+                let code = shiping22Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行2任务报错', error)
+            }
+
+        }
+
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行23第', index + 1, '次')
+                let code = shiping23Task()
                 if (code == 0) {
                     autojsUtils.close(appName)
                     console.log(`${itemName}任务执行失败,再次执行`)

@@ -53,7 +53,6 @@ try {
         if (!images.requestScreenCapture()) {
             console.log('请求截图失败')
             toastLog('请求截图失败');
-            return
         }
         // console.log('开启线程')
         toastLog(`cap`);
@@ -73,7 +72,7 @@ try {
         }
     }
 
-
+    home()
     engines.stopAll();
     // Packages.java.lang.System.gc()
 
