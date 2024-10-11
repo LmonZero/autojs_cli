@@ -125,7 +125,7 @@ for (let i = 0; i < 1; i++) {
 }
 
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 6; i++) {
     if (i == 0) {
         console.log('支付宝养号任务', i, 'all', all++)
         zfb_yanhao()
