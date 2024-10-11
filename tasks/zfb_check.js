@@ -161,7 +161,7 @@ function taskCk1() {
     let task_png = autojsUtils.getPngCenter(small, img, 0.6)
     small.recycle()
     if (task_png) {
-        console.log('进入签到')
+        console.log('进入签到11')
         click(task_png[0], task_png[1])
         sleep(1000 * 5)
 
@@ -175,6 +175,8 @@ function taskCk1() {
                 click(xy.x, xy.y)
                 sleep(1000 * 2)
             }
+        } else {
+            console.log('没有去领取')
         }
 
         if (text('去预约').findOne(1000)) {
@@ -182,6 +184,8 @@ function taskCk1() {
             console.log('去预约', xy)
             click(xy.x, xy.y)
             sleep(1000 * 2)
+        } else {
+            console.log('没有去预约')
         }
     }
 
