@@ -592,7 +592,7 @@ function task6() {
             sleep(1000 * 2)
 
             if (text('返回').findOne(2000)) {
-                dyShiping(20)
+                dyShiping(30)
                 back()
             }
             break
