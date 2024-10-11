@@ -65,7 +65,7 @@ function task() {
         return code
     }
 
-    dyShiping(10)
+    dyShiping(5)
 
     sleep(1000 * 5)
     autojsUtils.close(appName)

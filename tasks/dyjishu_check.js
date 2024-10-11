@@ -75,6 +75,7 @@ function dyGuangao(times) {
 }
 function dyShiping(times) {
     console.log('开始抖音视频')
+    let time = 10
     sleep(2000)
     for (let i = 0; i < times; i++) {
         console.log(i, '滑动,休息10s')
@@ -83,10 +84,24 @@ function dyShiping(times) {
             console.log('点击进入直播间,划走哦')
             swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
         }
-        sleep(1000 * 10)
-        let delay = Math.ceil(Math.random() * 10)
-        console.log('随机', delay)
-        sleep(1000 * delay)
+
+        if (text('看本视频').findOne(2000)) {
+            console.log('本视频额外奖励，修改滑动3s')
+            time = 3
+            sleep(1000 * 35)
+        } else {
+            if (text('回到任务页'.findOne(1000))) {
+                console.log('回到任务页')
+                back()
+                sleep(1000 * 2)
+                break
+            } else {
+                sleep(1000 * time)
+                let delay = Math.ceil(Math.random() * 5)
+                console.log('随机', delay)
+                sleep(1000 * delay)
+            }
+        }
 
     }
 
@@ -577,7 +592,7 @@ function task6() {
             sleep(1000 * 2)
 
             if (text('返回').findOne(2000)) {
-                dyShiping(10)
+                dyShiping(20)
                 back()
             }
             break
