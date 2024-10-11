@@ -85,7 +85,7 @@ function task() {
         if (shiping_in) {
             console.log('点击继续观看')
             click(shiping_in[0], shiping_in[1])
-            dyGuangao(10)
+            dyGuangao(5)
         }
     }
 
@@ -129,7 +129,7 @@ function task() {
             if (shiping_in) {
                 console.log('点击继续观看')
                 click(shiping_in[0], shiping_in[1])
-                dyGuangao(10)
+                dyGuangao(5)
             }
         }
 
@@ -163,6 +163,71 @@ function task() {
 
 
         }
+    }
+
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
+function task1() {
+    let code = 0
+    console.log(`开始执行${itemName}任务task1`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 5)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 10)
+    back()
+    sleep(1000 * 2)
+
+    if (text('以后再说').findOne(2000)) {
+        console.log('点击以后再说')
+        text('以后再说').findOne(2000).click()
+        sleep(1000 * 2)
+    }
+
+
+    if (text('立即签到').findOne(1000)) {
+        let xy = text('立即签到').findOne().center()
+        console.log('1点击立即签到', xy)
+        click(xy.x, xy.y)
+        sleep(1000 * 2)
+        img = autojsUtils.capScreen()
+        let small_shiping = images.read('./png/dy_shiping_again.jpg')
+        let shiping_in = autojsUtils.getPngCenter(small_shiping, img)
+        small_shiping.recycle()
+        if (shiping_in) {
+            console.log('点击继续观看')
+            click(shiping_in[0], shiping_in[1])
+            dyGuangao(5)
+        }
+    }
+
+
+
+    let ck = text('视频').findOne(2000)
+    if (!ck) {
+        console.log('找不到签到入口')
+        return code
+    }
+
+    let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
+    console.log('点击入口', xy)
+    click(xy.x, xy.y)
+    sleep(5 * 1000)
+
+    console.log('检查是否在签到界面')
+    if (!text('我的金币').findOne(1000)) {
+        console.log('不在签到界面')
+        return code
     }
 
     console.log('收金币')
@@ -209,7 +274,6 @@ function task() {
         img = autojsUtils.capScreen()
         small = images.read('./png/dy_ck4.jpg')
         task_png = autojsUtils.getPngCenter(small, img, 0.6)
-        small.recycle()
         console.log('检查是否一键抽奖', task_png)
 
         if (task_png) {
@@ -222,7 +286,6 @@ function task() {
         img = autojsUtils.capScreen()
         small = images.read('./png/dy_ck5.jpg')
         task_png = autojsUtils.getPngCenter(small, img, 0.6)
-        small.recycle()
         console.log('检查是否在立即抽奖', task_png)
         if (task_png) {
             console.log('点击立即抽奖')
@@ -238,6 +301,7 @@ function task() {
     console.log(`执行${itemName}任务结束`);
     return 1
 }
+
 
 function shipingTask() {
     let code = 0
@@ -260,7 +324,11 @@ function shipingTask() {
         text('以后再说').findOne(2000).click()
         sleep(1000 * 2)
     }
-
+    console.log('先逛首页')
+    for (let index = 0; index < 25; index++) {
+        swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 300, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 3000)
+        sleep(1000 * 1)
+    }
 
     let ck = text('视频').findOne(2000)
     if (!ck) {
@@ -300,10 +368,10 @@ function shipingTask() {
             console.log('进入推荐视频界面')
 
 
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 4; i++) {
                 console.log(i, '滑动,休息30s')
                 swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
-                sleep(1000 * 20)
+                sleep(1000 * 15)
                 let delay = Math.ceil(Math.random() * 20)
                 console.log('随机', delay)
                 sleep(1000 * delay)
@@ -330,6 +398,17 @@ module.exports = () => {
         for (let index = 0; index < 3; index++) {
             console.log('执行1第', index + 1, '次')
             let code = task()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
+
+        for (let index = 0; index < 3; index++) {
+            console.log('执行1第', index + 1, '次')
+            let code = task1()
             if (code == 0) {
                 autojsUtils.close(appName)
                 console.log(`${itemName}任务执行失败,再次执行`)

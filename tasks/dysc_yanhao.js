@@ -165,6 +165,71 @@ function task() {
         }
     }
 
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
+function task1() {
+    let code = 0
+    console.log(`开始执行${itemName}任务task1`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 5)
+    console.log('打开app')
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 10)
+    back()
+    sleep(1000 * 2)
+
+    if (text('以后再说').findOne(2000)) {
+        console.log('点击以后再说')
+        text('以后再说').findOne(2000).click()
+        sleep(1000 * 2)
+    }
+
+
+    if (text('立即签到').findOne(1000)) {
+        let xy = text('立即签到').findOne().center()
+        console.log('1点击立即签到', xy)
+        click(xy.x, xy.y)
+        sleep(1000 * 2)
+        img = autojsUtils.capScreen()
+        let small_shiping = images.read('./png/dy_shiping_again.jpg')
+        let shiping_in = autojsUtils.getPngCenter(small_shiping, img)
+        small_shiping.recycle()
+        if (shiping_in) {
+            console.log('点击继续观看')
+            click(shiping_in[0], shiping_in[1])
+            dyGuangao(5)
+        }
+    }
+
+
+
+    let ck = text('视频').findOne(2000)
+    if (!ck) {
+        console.log('找不到签到入口')
+        return code
+    }
+
+    let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
+    console.log('点击入口', xy)
+    click(xy.x, xy.y)
+    sleep(5 * 1000)
+
+    console.log('检查是否在签到界面')
+    if (!text('我的金币').findOne(1000)) {
+        console.log('不在签到界面')
+        return code
+    }
+
     console.log('收金币')
     img = autojsUtils.capScreen()
     small = images.read('./png/dy_ck2.jpg') //用抽奖图片确定y
@@ -278,15 +343,15 @@ function shipingTask() {
 
     if (text('推荐').findOne(1000)) {
         console.log('进入推荐视频界面')
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 40; i++) {
             console.log(i, '滑动')
             swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
             if (text('点击进入直播间').findOne(2000)) {
                 console.log('点击进入直播间,划走哦')
                 swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
             }
-            console.log('观看1分钟')
-            sleep(1000 * 60 * 1)
+            console.log('观看15s')
+            sleep(1000 * 15 * 1)
             let delay = Math.ceil(Math.random() * 20)
             console.log('随机', delay)
             sleep(1000 * delay)
@@ -311,6 +376,17 @@ module.exports = () => {
         for (let index = 0; index < 3; index++) {
             console.log('执行1第', index + 1, '次')
             let code = task()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
+
+        for (let index = 0; index < 3; index++) {
+            console.log('执行1第', index + 1, '次')
+            let code = task1()
             if (code == 0) {
                 autojsUtils.close(appName)
                 console.log(`${itemName}任务执行失败,再次执行`)
