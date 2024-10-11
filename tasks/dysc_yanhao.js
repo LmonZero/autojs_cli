@@ -260,7 +260,7 @@ function shipingTask() {
     }
 
     console.log('先逛首页')
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < 20; index++) {
         swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 300, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 3000)
         sleep(1000 * 1)
     }
@@ -278,7 +278,7 @@ function shipingTask() {
 
     if (text('推荐').findOne(1000)) {
         console.log('进入推荐视频界面')
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 7; i++) {
             console.log(i, '滑动')
             swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
             if (text('点击进入直播间').findOne(2000)) {
