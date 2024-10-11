@@ -26,6 +26,19 @@ function zfbShiping(times) {
     console.log('开始支付宝视频')
     sleep(6000)
     for (let i = 0; i < times; i++) {
+
+        if (i < 7 && i % 2 == 0) {
+            console.log('截图确认视频任务上限')
+            let img = autojsUtils.capScreen()
+            let small = images.read('./png/zfb_ck03.jpg')
+            let task_png = autojsUtils.getPngCenter(small, img, 0.5)
+            small.recycle()
+            if (task_png) {
+                console.log('今日任务已达上限')
+                break
+            }
+        }
+
         if (!text('发现').findOne(2000)) {
             console.log('发现不存在,跑飞了？？')
             break
@@ -114,14 +127,6 @@ function taskCk() {
         }
     }
 
-
-
-    if (!text('发现').findOne(2000)) {
-        console.log('发现不存在,跑飞了？？')
-        return code
-    }
-
-
     sleep(1000 * 5)
     autojsUtils.close(appName)
     home()
@@ -161,13 +166,19 @@ function taskCk1() {
     let task_png = autojsUtils.getPngCenter(small, img, 0.6)
     small.recycle()
     if (task_png) {
-        console.log('进入签到')
+        console.log('进入签到22')
         click(task_png[0], task_png[1])
         sleep(1000 * 5)
+        if (textStartsWith('天天预约').findOne(2000)) {
+            let xy = textStartsWith('天天预约').findOne(2000).parent().child(3).center()
+            console.log('天天预约', xy)
+            click(xy.x, xy.y)
+            sleep(1000 * 5)
+        }
 
         if (text('去领取').findOne(1000)) {
             let xy = text('去领取').findOne(1000).center()
-            console.log('去领取', xy)
+            console.log('去领取大红包', xy)
             click(xy.x, xy.y)
             sleep(1000 * 3)
             if (text('立即领取').findOne(1000)) {
@@ -175,21 +186,18 @@ function taskCk1() {
                 click(xy.x, xy.y)
                 sleep(1000 * 2)
             }
+        } else {
+            console.log('没有去领取')
         }
 
-        if (text('去预约').findOne(1000)) {
-            let xy = text('去预约').findOne(1000).center()
-            console.log('去预约', xy)
-            click(xy.x, xy.y)
-            sleep(1000 * 2)
-        }
-    }
-
-
-
-    if (!text('发现').findOne(2000)) {
-        console.log('发现不存在,跑飞了？？')
-        return code
+        // if (text('去预约').findOne(1000)) {
+        //     let xy = text('去预约').findOne(1000).center()
+        //     console.log('去预约', xy)
+        //     click(xy.x, xy.y)
+        //     sleep(1000 * 2)
+        // } else {
+        //     console.log('没有去预约')
+        // }
     }
 
 
@@ -225,17 +233,17 @@ function task() {
     click(xy.x, xy.y)
     sleep(1000 * 10)
     // 图片识别失败 没办法
-    // let img = autojsUtils.capScreen()
-    // let small = images.read('./png/zfb_ck03.jpg')
-    // let task_png = autojsUtils.getPngCenter(small, img, 0.6)
-    // small.recycle()
-    // if (task_png) {
-    //     console.log('今日视频已经上限')
-    // }
-    // if (!task_png) {
-    //     zfbShiping(30)
-    // }
-    zfbShiping(30)
+    let img = autojsUtils.capScreen()
+    let small = images.read('./png/zfb_ck03.jpg')
+    let task_png = autojsUtils.getPngCenter(small, img, 0.5)
+    small.recycle()
+    if (task_png) {
+        console.log('今日视频已经上限')
+    } else {
+        zfbShiping(30)
+    }
+
+    // zfbShiping(30)
 
     sleep(1000 * 5)
     autojsUtils.close(appName)
@@ -253,21 +261,7 @@ module.exports = () => {
         autojsUtils.media(0)
         // taskCk
         autojsUtils.showMem()
-        for (let index = 0; index < 2; index++) {
-            try {
-                console.log('执行1第', index + 1, '次')
-                let code = taskCk()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
-            }
 
-        }
 
         for (let index = 0; index < 2; index++) {
             try {
@@ -284,6 +278,23 @@ module.exports = () => {
             }
 
         }
+
+        for (let index = 0; index < 2; index++) {
+            try {
+                console.log('执行ck第', index + 1, '次')
+                let code = taskCk()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行ck任务报错', error)
+            }
+
+        }
+
 
         for (let index = 0; index < 5; index++) {
             try {

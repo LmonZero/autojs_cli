@@ -325,7 +325,7 @@ function shipingTask() {
     }
 
     console.log('先逛首页')
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 25; index++) {
         swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 300, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 3000)
         sleep(1000 * 1)
     }

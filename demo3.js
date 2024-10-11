@@ -203,6 +203,80 @@ try {
 
     // console.log('====', text('去提现').findOne(2000))
 
+    // var thread
+    // try {
+    //     thread = threads.start(function () {
+    //         sleep(500)
+
+    //         if (text('立即开始').findOne(3000)) {
+    //             text('立即开始').findOne(1000).click()
+    //         }
+    //         console.log('线程结束..')
+    //     });
+    //     if (!images.requestScreenCapture()) {
+    //         console.log('请求截图失败')
+    //         toastLog('请求截图失败');
+    //     }
+    //     // console.log('开启线程')
+    //     toastLog(`cap`);
+    //     sleep(500)
+    //     let img = images.captureScreen();
+    //     sleep(20)
+    //     console.log('截图完成')
+    //     // toastLog(`截图完成`);
+
+    // } catch (error) {
+    //     console.error('==eeeee====', error)
+    // } finally {
+    //     console.log('capScreen end thread && thread.isAlive()==', thread && thread.isAlive())
+    //     if (thread && thread.isAlive()) {
+    //         console.log('关闭确认线程')
+    //         thread.interrupt();
+    //     }
+    // }
+
+    // console.log('====', textStartsWith('天天预约').findOne(2000).parent().child(3).center())
+    // let xy = textStartsWith('天天预约').findOne(2000).parent().child(3).center()
+    // click(xy.x, xy.y)
+    // sleep(1000 * 5)
+    let arr = files.listDir("./png");
+    console.log('图片路径===', arr);
+    sleep(1000 * 5)
+    let img = capScreen()
+    let small = images.read('./png/zfb_ck03.jpg')
+    console.log('small', small)
+    let task_png = getPngCenter(small, img, 0.6)
+    console.log('task_png', task_png)
+    small.recycle()
+
+} catch (error) {
+    console.error('==eeeee====', error)
+}
+
+function getPngCenter(smallImg, bigImg, threshold) {
+
+    try {
+        let point = null
+        if (threshold) {
+            point = images.findImage(bigImg, smallImg, {
+                threshold: threshold
+            });
+        } else {
+            point = images.findImage(bigImg, smallImg);
+        }
+
+        if (point) {
+            return [point.x + smallImg.width / 2, point.y + smallImg.height / 2, point.x, point.y, smallImg.width, smallImg.height]
+        } else {
+            return
+        }
+    } catch (error) {
+        console.error('==eeeee====', error)
+    }
+
+}
+
+function capScreen() {
     var thread
     try {
         thread = threads.start(function () {
@@ -225,7 +299,7 @@ try {
         sleep(20)
         console.log('截图完成')
         // toastLog(`截图完成`);
-
+        return img
     } catch (error) {
         console.error('==eeeee====', error)
     } finally {
@@ -236,8 +310,6 @@ try {
         }
     }
 
-} catch (error) {
-    console.error('==eeeee====', error)
 }
 
 

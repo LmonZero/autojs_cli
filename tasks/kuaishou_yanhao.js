@@ -100,7 +100,7 @@ function task() {
         console.log('点赞失败', error)
     }
 
-    ksShiping(12) // 半个小时左右
+    ksShiping(6) // 半个小时左右
 
 
     sleep(1000 * 5)

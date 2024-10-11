@@ -84,12 +84,6 @@ function task() {
     console.log('图片对比发现<抽奖转盘>')
     small = images.read('./png/dianxing_ck_cjck.jpg')
     bigImg = autojsUtils.capScreen()
-    small.recycle()
-
-    if (!bigImg) {
-        console.log('截图失败')
-        return code
-    }
     val = autojsUtils.getPngCenter(small, bigImg)
     small.recycle();
     console.log('抽奖转盘图片对比结果', val)

@@ -358,11 +358,11 @@ function task3() {
                 let task = tasks[index]
                 if (text(task).findOne(2000)) {
                     let xy = text(task).findOne(2000).brother(5).center()
-                    console.log('点击浏览任务')
+                    console.log('点击浏览任务', task)
                     click(xy.x, xy.y)
                     sleep(1000 * 5)
                     if (!text('去提现').findOne(2000)) {
-                        console.log('没有进入任务页面')
+                        console.log('进入任务页面')
                         for (let index = 0; index < 15; index++) {
                             console.log('下滑', index)
                             swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 3000)
