@@ -520,7 +520,7 @@ function task5() {
         if (task_png) {
             console.log('点击看广告赚金币ok')
             click(task_png[0], task_png[1])
-            sleep(1000 * 2)
+            sleep(1000 * 5)
 
             if (text('反馈').findOne(2000)) {
                 console.log('进入看广告')

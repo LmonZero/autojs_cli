@@ -25,7 +25,7 @@ const dy_yanhao = require('./tasks/dy_yanhao');
 
 let all = 1
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 2; i++) {
     console.log('得物任务', i, 'all', all++)
     dewu_check()
     console.log('1 dewu_check 1s')
@@ -40,7 +40,7 @@ for (let i = 0; i < 2; i++) {
 }
 
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 2; i++) {
     console.log('得物任务', i, 'all', all++)
     dewu_check()
     console.log('1 dewu_check 1s')
@@ -94,7 +94,7 @@ for (let i = 0; i < 1; i++) {
 }
 
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 1; i++) {
     console.log('番茄任务', i, 'all', all++)
     fanqie_check()
     console.log('1 fanqie_check 1s')
@@ -110,7 +110,7 @@ for (let i = 0; i < 1; i++) {
 }
 
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 2; i++) {
     console.log('腾讯视频任务', i, 'all', all++)
     tenxun_check()
     console.log('1 tenxun_check 1s')
@@ -202,17 +202,17 @@ for (let j = 0; j < 3; j++) {
         sleep(1000)
     }
 
-    for (let i = 0; i < times1; i++) {
-        if (i == 0) {
-            console.log('抖音正常养号任务', i, 'all', all++)
-            dy_yanhao()
-            sleep(1000)
-        }
-        console.log('抖音正常任务', i, 'all', all++)
-        dy_check()
-        console.log('1 dyjishu_check 1s')
-        sleep(1000)
-    }
+    // for (let i = 0; i < times1; i++) {
+    //     if (i == 0) {
+    //         console.log('抖音正常养号任务', i, 'all', all++)
+    //         dy_yanhao()
+    //         sleep(1000)
+    //     }
+    //     console.log('抖音正常任务', i, 'all', all++)
+    //     dy_check()
+    //     console.log('1 dyjishu_check 1s')
+    //     sleep(1000)
+    // }
 
 
     for (let i = 0; i < times1; i++) {
@@ -272,12 +272,12 @@ for (let j = 0; j < 3; j++) {
     }
 
 
-    for (let i = 0; i < times3; i++) {
-        console.log('抖音正常任务', i, 'all', all++)
-        dy_check()
-        console.log('1 dyjishu_check 1s')
-        sleep(1000)
-    }
+    // for (let i = 0; i < times3; i++) {
+    //     console.log('抖音正常任务', i, 'all', all++)
+    //     dy_check()
+    //     console.log('1 dyjishu_check 1s')
+    //     sleep(1000)
+    // }
 
     for (let i = 0; i < times3 + 1; i++) {
         console.log('快手极速任务', i, 'all', all++)
