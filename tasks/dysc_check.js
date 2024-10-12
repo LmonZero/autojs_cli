@@ -16,7 +16,7 @@ if (!autojsUtils.checkMiuiPermission(10021)) {
 // 获取屏幕宽度和高度
 var width = device.width;
 var height = device.height;
-
+var guangaoxy = null
 // 输出屏幕分辨率
 console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
@@ -30,17 +30,41 @@ function dyGuangao(times) {
             console.log('广告进入成功')
         }
         sleep(1000 * 30)
-        back();
-        sleep(1000 * 2)
-        if (text('继续领奖励').findOne(1000)) {
-            console.log('继续领奖励')
-            let xy = text('继续领奖励').findOne(1000).center()
-            click(xy.x, xy.y)
-            sleep(1000 * 2)
-        } else {
-            console.log('无法继续看视频')
-            break;
+
+        if (guangaoxy) {
+            console.log('点击广告')
+            click(guangaoxy.x, guangaoxy.y)
+            sleep(1000 * 8)
         }
+        let stop = false
+        for (let j = 0; j < 3; j++) {
+            stop = false
+            back();
+            sleep(1000 * 2)
+
+            if (text('继续领奖励').findOne(1000)) {
+                console.log('继续领奖励')
+                let xy = text('继续领奖励').findOne(1000).center()
+                click(xy.x, xy.y)
+                sleep(1000 * 2)
+                break
+            } else {
+
+                if (text('继续观看').findOne(1000)) {
+                    console.log('继续观看')
+                    let xy = text('继续观看').findOne(1000).center()
+                    click(xy.x, xy.y)
+                    sleep(1000 * 2)
+                    break
+                } else {
+                    console.log('无法继续看视频')
+                    stop = true
+                }
+
+            }
+
+        }
+
     }
 
     if (text('坚持退出').findOne(1000)) {
@@ -99,6 +123,8 @@ function task() {
 
     let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
     console.log('点击入口', xy)
+    guangaoxy = xy
+
     click(xy.x, xy.y)
     sleep(5 * 1000)
 
@@ -221,6 +247,7 @@ function task1() {
 
     let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
     console.log('点击入口', xy)
+    guangaoxy = xy
     click(xy.x, xy.y)
     sleep(5 * 1000)
 
@@ -338,6 +365,7 @@ function shipingTask() {
 
     let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
     console.log('点击入口', xy)
+    guangaoxy = xy
     click(xy.x, xy.y)
     sleep(5 * 1000)
 
@@ -417,16 +445,16 @@ module.exports = () => {
             }
         }
 
-        for (let index = 0; index < 3; index++) {
-            console.log('执行2第', index + 1, '次')
-            let code = shipingTask()
-            if (code == 0) {
-                autojsUtils.close(appName)
-                console.log(`${itemName}任务执行失败,再次执行`)
-            } else {
-                break
-            }
-        }
+        // for (let index = 0; index < 3; index++) {
+        //     console.log('执行2第', index + 1, '次')
+        //     let code = shipingTask()
+        //     if (code == 0) {
+        //         autojsUtils.close(appName)
+        //         console.log(`${itemName}任务执行失败,再次执行`)
+        //     } else {
+        //         break
+        //     }
+        // }
     } catch (error) {
         console.error('catch====', error)
     } finally {

@@ -17,7 +17,7 @@ if (!autojsUtils.checkMiuiPermission(10021)) {
 // 获取屏幕宽度和高度
 var width = device.width;
 var height = device.height;
-
+var guangxy = null
 // 输出屏幕分辨率
 console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
@@ -31,24 +31,118 @@ function dyGuangao(times) {
             console.log('广告进入成功')
         }
         sleep(1000 * 30)
-        back();
-        sleep(1000 * 2)
-        if (text('继续领奖励').findOne(1000)) {
-            console.log('继续领奖励')
-            let xy = text('继续领奖励').findOne(1000).center()
+        let isOK = false
+
+        if (textStartsWith('首单最高').findOne(1000)) {
+            console.log('首单最高')
+            let xy = textStartsWith('首单最高').findOne(1000).center()
             click(xy.x, xy.y)
-            sleep(1000 * 2)
+            sleep(1000 * 8)
+            isOK = true
+        }
+        if (textStartsWith('查看详细').findOne(1000)) {
+            console.log('查看详细')
+            let xy = textStartsWith('查看详细').findOne(1000).center()
+            click(xy.x, xy.y)
+            sleep(1000 * 8)
+            isOK = true
+        }
+
+        if (textStartsWith('点击进入').findOne(1000)) {
+            console.log('查看详细')
+            let xy = textStartsWith('查看详细').findOne(1000).center()
+            click(xy.x, xy.y)
+            sleep(1000 * 8)
+            isOK = true
+        }
+
+        if (!isOK && guangxy) {
+            console.log('点击通用广告坐标')
+            click(guangxy.x, guangxy.y)
+            sleep(1000 * 8)
+        }
+        if (isOK) {
+            let stop = false
+            for (let i = 0; i < 5; i++) {
+                stop = false
+                back();
+                sleep(1000 * 2)
+
+                if (text('评价并收下金币').findOne(1000)) {
+                    console.log('评价并收下金币')
+                    let xy = text('评价并收下金币').findOne(1000).center()
+                    click(xy.x, xy.y)
+                    sleep(1000 * 2)
+                    back();
+                    sleep(1000 * 2)
+                }
+
+                if (text('继续领奖励').findOne(1000)) {
+                    console.log('继续领奖励')
+                    let xy = text('继续领奖励').findOne(1000).center()
+                    click(xy.x, xy.y)
+                    sleep(1000 * 2)
+                    break;
+                } else {
+                    if (text('领取奖励').findOne(1000)) {
+                        console.log('领取奖励')
+                        let xy = text('领取奖励').findOne(1000).center()
+                        click(xy.x, xy.y)
+                        sleep(1000 * 2)
+                        break;
+                    } else {
+                        if (text('继续观看').findOne(1000)) {
+                            console.log('继续观看')
+                            let xy = text('继续观看').findOne(1000).center()
+                            click(xy.x, xy.y)
+                            break;
+                        } else {
+                            console.log('无法继续看视频???')
+                            true
+                        }
+                    }
+                }
+            }
+
+            if (stop) {
+                break;
+            }
+
         } else {
-            if (text('领取奖励').findOne(1000)) {
-                console.log('领取奖励')
-                let xy = text('领取奖励').findOne(1000).center()
+
+            if (text('评价并收下金币').findOne(2000)) {
+                console.log('评价并收下金币')
+                let xy = text('评价并收下金币').findOne(1000).center()
+                click(xy.x, xy.y)
+                sleep(1000 * 2)
+                back();
+                sleep(1000 * 2)
+            }
+
+            if (text('继续领奖励').findOne(1000)) {
+                console.log('继续领奖励')
+                let xy = text('继续领奖励').findOne(1000).center()
                 click(xy.x, xy.y)
                 sleep(1000 * 2)
             } else {
-                console.log('无法继续看视频')
-                break;
+                if (text('领取奖励').findOne(1000)) {
+                    console.log('领取奖励')
+                    let xy = text('领取奖励').findOne(1000).center()
+                    click(xy.x, xy.y)
+                    sleep(1000 * 2)
+                } else {
+                    if (text('继续观看').findOne(1000)) {
+                        console.log('继续观看')
+                        let xy = text('继续观看').findOne(1000).center()
+                        click(xy.x, xy.y)
+                    } else {
+                        console.log('无法继续看视频')
+                        break;
+                    }
+                }
             }
         }
+
     }
 
     if (text('坚持退出').findOne(1000)) {
@@ -132,6 +226,7 @@ function task() {
     let xy1 = text('朋友').findOne(2000).center()
     let xy2 = text('消息').findOne(2000).center()
     console.log('点击赚钱入口')
+    guangxy = { x: xy1.x + Math.ceil((xy2.x - xy1.x) / 2), y: xy1.y }
     click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
     sleep(1000 * 8)
 
@@ -190,6 +285,7 @@ function task1() {
     let xy1 = text('朋友').findOne(2000).center()
     let xy2 = text('消息').findOne(2000).center()
     console.log('点击赚钱入口')
+    guangxy = { x: xy1.x + Math.ceil((xy2.x - xy1.x) / 2), y: xy1.y }
     click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
     sleep(1000 * 8)
 
@@ -250,6 +346,7 @@ function task2() {
     let xy1 = text('朋友').findOne(2000).center()
     let xy2 = text('消息').findOne(2000).center()
     console.log('点击赚钱入口')
+    guangxy = { x: xy1.x + Math.ceil((xy2.x - xy1.x) / 2), y: xy1.y }
     click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
     sleep(1000 * 8)
 
@@ -320,6 +417,7 @@ function task3() {
     let xy1 = text('朋友').findOne(2000).center()
     let xy2 = text('消息').findOne(2000).center()
     console.log('点击赚钱入口')
+    guangxy = { x: xy1.x + Math.ceil((xy2.x - xy1.x) / 2), y: xy1.y }
     click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
     sleep(1000 * 8)
 
@@ -415,6 +513,7 @@ function task4() {
     let xy1 = text('朋友').findOne(2000).center()
     let xy2 = text('消息').findOne(2000).center()
     console.log('点击赚钱入口')
+    guangxy = { x: xy1.x + Math.ceil((xy2.x - xy1.x) / 2), y: xy1.y }
     click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
     sleep(1000 * 8)
 
@@ -495,6 +594,7 @@ function task5() {
     let xy1 = text('朋友').findOne(2000).center()
     let xy2 = text('消息').findOne(2000).center()
     console.log('点击赚钱入口')
+    guangxy = { x: xy1.x + Math.ceil((xy2.x - xy1.x) / 2), y: xy1.y }
     click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
     sleep(1000 * 8)
 
@@ -564,6 +664,7 @@ function task6() {
     let xy1 = text('朋友').findOne(2000).center()
     let xy2 = text('消息').findOne(2000).center()
     console.log('点击赚钱入口')
+    guangxy = { x: xy1.x + Math.ceil((xy2.x - xy1.x) / 2), y: xy1.y }
     click(xy1.x + Math.ceil((xy2.x - xy1.x) / 2), xy1.y)
     sleep(1000 * 8)
 
@@ -616,6 +717,54 @@ module.exports = () => {
         autojsUtils.media(0)
         autojsUtils.auth()
         autojsUtils.showMem()
+
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('task2执行1第', index + 1, '次')
+                let code = task2()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('task2执行1任务报错', error)
+            }
+
+        }
         for (let index = 0; index < 5; index++) {
             try {
                 console.log('执行1第', index + 1, '次')
@@ -636,22 +785,6 @@ module.exports = () => {
             try {
                 console.log('执行1第', index + 1, '次')
                 let code = task6()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
-            }
-
-        }
-
-        for (let index = 0; index < 5; index++) {
-            try {
-                console.log('执行1第', index + 1, '次')
-                let code = task()
                 if (code == 0) {
                     autojsUtils.close(appName)
                     console.log(`${itemName}任务执行失败,再次执行`)

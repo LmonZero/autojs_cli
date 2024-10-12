@@ -351,11 +351,22 @@ function shipingTask() {
                 swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
             }
             console.log('观看15s')
-            sleep(1000 * 15 * 1)
-            let delay = Math.ceil(Math.random() * 20)
+            sleep(1000 * 5 * 1)
+            let delay = Math.ceil(Math.random() * 10)
             console.log('随机', delay)
             sleep(1000 * delay)
         }
+
+        let ck = text('视频').findOne(2000)
+        if (!ck) {
+            console.log('找不到签到入口')
+            return code
+        }
+
+        let xy = ck.parent().parent().parent().parent().parent().parent().parent().child(2).center()
+        console.log('点击入口', xy)
+        click(xy.x, xy.y)
+        sleep(5 * 1000)
 
     }
 
