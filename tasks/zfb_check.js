@@ -312,6 +312,22 @@ module.exports = () => {
 
         }
 
+        for (let index = 0; index < 2; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = taskCk1()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+
     } catch (error) {
         console.error('catch====', error)
         autojsUtils.close(appName)

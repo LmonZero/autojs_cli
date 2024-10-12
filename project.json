@@ -8,7 +8,7 @@
     "splashText": "Powered by AutoJs6",
     "stableMode": false
   },
-  "main": "main_fast.js",
+  "main": "zfb_main.js",
   "name": "%ProjectName%",
   "optimization": {
     "removeOpenCv": false,

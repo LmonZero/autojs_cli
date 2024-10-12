@@ -667,7 +667,7 @@ function shiping23Task() {
     //
     console.log('检查是否有宝箱')
     let img = autojsUtils.capScreen()
-    let small = images.read('./png/ks_ck_ 02.jpg')
+    let small = images.read('./png/ks_ck_02.jpg')
     let task_png = autojsUtils.getPngCenter(small, img, 0.8)
     small.recycle()
 

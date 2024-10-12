@@ -38,8 +38,8 @@ function zfbShiping(times) {
             console.log('是直播,划走')
             swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
         }
-        console.log('停留1分钟,划走')
-        sleep(1000 * 60 * 1)
+        console.log('停留45s,划走')
+        sleep(1000 * 45 * 1)
         let delay = Math.ceil(Math.random() * 22)
         console.log('随机', delay)
         sleep(1000 * delay)
