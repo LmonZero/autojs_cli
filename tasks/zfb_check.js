@@ -27,7 +27,7 @@ function zfbShiping(times) {
     sleep(6000)
     for (let i = 0; i < times; i++) {
 
-        if (i < 7 && i % 2 == 0) {
+        if (i < 3 || ((i > Math.ceil(times / 2) - 1) && i < Math.ceil(times / 2) + 2) || i < times - 3) {
             console.log('截图确认视频任务上限')
             let img = autojsUtils.capScreen()
             let small = images.read('./png/zfb_ck03.jpg')
