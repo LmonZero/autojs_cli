@@ -90,7 +90,7 @@ function dyShiping(times) {
             time = 3
             sleep(1000 * 35)
         } else {
-            if (text('回到任务页'.findOne(1000))) {
+            if (text('回任务页').findOne(1000)) {
                 console.log('回到任务页')
                 back()
                 sleep(1000 * 2)
