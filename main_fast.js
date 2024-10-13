@@ -2,13 +2,13 @@ const dysc_check = require('./tasks/dysc_check');
 const dysc_yanhao = require('./tasks/dysc_yanhao');
 
 const kuaishou_check = require('./tasks/kuaishou_check');
-const kuaishou_yanhao = require('./tasks/kuaishou_yanhao');
+// const kuaishou_yanhao = require('./tasks/kuaishou_yanhao');
 
 const dyjishu_check = require('./tasks/dyjishu_check');
 const dyjishu_yanhao = require('./tasks/dyjishu_yanhao');
 
-const dy_check = require('./tasks/dy_check');
-const dy_yanhao = require('./tasks/dy_yanhao');
+// const dy_check = require('./tasks/dy_check');
+// const dy_yanhao = require('./tasks/dy_yanhao');
 
 
 let all = 1
