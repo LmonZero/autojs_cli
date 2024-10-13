@@ -19,8 +19,8 @@ const zfb_yanhao = require('./tasks/zfb_yanhao');
 const dyjishu_check = require('./tasks/dyjishu_check');
 const dyjishu_yanhao = require('./tasks/dyjishu_yanhao');
 
-const dy_check = require('./tasks/dy_check');
-const dy_yanhao = require('./tasks/dy_yanhao');
+// const dy_check = require('./tasks/dy_check');
+// const dy_yanhao = require('./tasks/dy_yanhao');
 
 
 let all = 1
@@ -40,7 +40,7 @@ for (let i = 0; i < 2; i++) {
 }
 
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 1; i++) {
     console.log('得物任务', i, 'all', all++)
     dewu_check()
     console.log('1 dewu_check 1s')
@@ -98,14 +98,6 @@ for (let i = 0; i < 1; i++) {
     console.log('番茄任务', i, 'all', all++)
     fanqie_check()
     console.log('1 fanqie_check 1s')
-    sleep(1000)
-}
-
-
-for (let i = 0; i < 1; i++) {
-    console.log('得物任务', i, 'all', all++)
-    dewu_check()
-    console.log('1 dewu_check 1s')
     sleep(1000)
 }
 

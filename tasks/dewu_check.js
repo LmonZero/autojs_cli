@@ -20,6 +20,70 @@ var height = device.height;
 // 输出屏幕分辨率
 console.log("屏幕宽度: " + width + "，屏幕高度: " + height);
 
+
+//便利拆一拆任务列表
+function runTaskList2() {
+
+    let c1 = textStartsWith('今日还可领').findOne(5000)
+    if (c1) {
+        let p1 = c1.parent().brother(2)
+        let cxs = p1.children()
+        console.log(cxs.length)
+
+        for (let i = 0; i < cxs.length; i++) {
+            let c = cxs[i]
+            // console.log(i, c.text())
+            let t = c.text()
+            if (t) {
+
+                if (t == '完成一次签到') {
+                    console.log('签到任务', t)
+                    i += 2
+                    let btn = cxs[i]
+                    if (btn) {
+                        btn.click()
+                        // let cxy = btn.center()
+                        // click(cxy.x, cxy.y)
+                        sleep(2 * 1000)
+
+                        if (textStartsWith('今日还可领').findOne(2000)) {
+                            console.log('可能是领取奖励')
+                        } else {
+                            let ckBton = text('今日签到').findOne(2000)
+                            if (ckBton) {
+                                let cxy = ckBton.center()
+                                click(cxy.x, cxy.y)
+                                console.log('点击潮金币今日签到')
+                                sleep(2 * 1000)
+                                back()
+                                sleep(2 * 1000)
+                            }
+                        }
+                    }
+                } else if (t.slice(0, 2) == '浏览') {
+                    console.log('浏览型任务==', t)
+                    i += 2
+                    let btn = cxs[i]
+                    if (btn) {
+                        btn.click()
+                        // let cxy = btn.center()
+                        // click(cxy.x, cxy.y)
+                        sleep(2 * 1000)
+                        if (textStartsWith('今日还可领').findOne(2000)) {
+                            console.log('可能是领取奖励')
+                        } else {
+                            runBrowseTask(2)
+                            back()
+                            sleep(2 * 1000)
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
 //遍历任务清单
 function runTaskList() {
     let res = false
@@ -239,6 +303,8 @@ function task() {
         return code
     }
     sleep(1000 * 10)
+    back()
+    sleep(1000 * 2)
     console.log('打开app')
     let myBton = text('探索').findOne(2000)
 
@@ -346,6 +412,176 @@ function task() {
     return 1
 }
 
+function task1() {
+    let code = 0
+    console.log(`开始执行${itemName}<拆一拆>任务task1`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 5)
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 10)
+    back()
+    sleep(1000 * 2)
+
+    console.log('打开app')
+    let myBton = text('探索').findOne(2000)
+
+    if (!myBton) {
+        console.log('未找到探索按钮')
+        return code
+    }
+    let mxy = myBton.center()
+    click(mxy.x, mxy.y)
+    sleep(1000 * 2)
+
+    let palyBton = text('玩一玩').findOne(2000)
+    if (!palyBton) {
+        console.log('未找到玩一玩按钮')
+        return code
+    }
+    let pxy = palyBton.center()
+    click(pxy.x, pxy.y)
+    sleep(1000 * 2)
+    let isok = false
+    for (let index = 0; index < 3; index++) {
+        swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2), 1000)
+        if (text('拆盲盒').findOne(2000)) {
+            console.log('拆盲盒')
+            let cyc = text('拆盲盒').findOne(2000).center()
+            click(cyc.x, cyc.y)
+            sleep(1000 * 3)
+            isok = true
+            break
+        }
+    }
+    if (!isok) {
+        console.log('未找到拆盲盒')
+        return code
+    }
+    sleep(1000 * 5)
+    console.log('拆盲盒任务')
+    if (text('拆盒机会').findOne(2000)) {
+        console.log('拆盒机会')
+        let xy = text('拆盒机会').findOne(2000).center()
+        console.log('拆盒机会', xy)
+        click(xy.x, xy.y)
+        sleep(1000 * 3)
+
+        runTaskList2()
+        sleep(1000 * 3)
+        runTaskList2()
+    }
+
+
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
+function task2() {
+    let code = 0
+    console.log(`开始执行${itemName}<拆盲盒>任务task2`)
+    autojsUtils.close(appName)
+    // com.shizhuang.duapp.modules.orderlist.activity.MyBuyActivityV2
+    home()
+    sleep(1000 * 5)
+    if (!launch(appName)) {
+        console.log(appName, '启动失败')
+        return code
+    }
+    sleep(1000 * 10)
+    back()
+    sleep(1000 * 2)
+
+    console.log('打开app')
+    let myBton = text('探索').findOne(2000)
+
+    if (!myBton) {
+        console.log('未找到探索按钮')
+        return code
+    }
+    let mxy = myBton.center()
+    click(mxy.x, mxy.y)
+    sleep(1000 * 2)
+
+    let palyBton = text('玩一玩').findOne(2000)
+    if (!palyBton) {
+        console.log('未找到玩一玩按钮')
+        return code
+    }
+    let pxy = palyBton.center()
+    click(pxy.x, pxy.y)
+    sleep(1000 * 2)
+    let isok = false
+    for (let index = 0; index < 3; index++) {
+        swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2), 1000)
+        if (text('拆盲盒').findOne(2000)) {
+            console.log('拆盲盒')
+            let cyc = text('拆盲盒').findOne(2000).center()
+            click(cyc.x, cyc.y)
+            sleep(1000 * 3)
+            isok = true
+            break
+        }
+    }
+    if (!isok) {
+        console.log('未找到拆盲盒')
+        return code
+    }
+    sleep(1000 * 5)
+    for (let index = 0; index < 10; index++) {
+        let img = autojsUtils.capScreen()
+        let small = images.read('./png/dw_cai01.jpg')
+        let task_png = autojsUtils.getPngCenter(small, img, 0.6)
+        small.recycle()
+        console.log('task_png', task_png)
+        if (task_png) {
+            click(task_png[0], task_png[1])
+            sleep(1000 * 3)
+            if (text('立即拆开').findOne(3000)) {
+                let xy = text('立即拆开').findOne(1000).center()
+                click(xy.x, xy.y)
+                sleep(1000 * 3)
+
+                if (text('收下').findOne(3000)) {
+                    let xy = text('收下').findOne(1000).center()
+                    click(xy.x, xy.y)
+                    sleep(1000 * 3)
+                }
+            } else {
+                console.log('拆到上限了')
+                break
+            }
+
+        } else {
+            console.log('点击换一批')
+            // console.log(text('拆盒机会').findOne(3000).parent().brother(2)) //换一批
+            if (text('拆盒机会').findOne(2000)) {
+                let xy = text('拆盒机会').findOne(2000).parent().brother(2).center()
+                console.log('换一批', xy)
+                click(xy.x, xy.y)
+                sleep(1000 * 3)
+            } else {
+                console.log('未找到换一批')
+                break
+            }
+
+        }
+    }
+
+    sleep(1000 * 5)
+    autojsUtils.close(appName)
+    home()
+    console.log(`执行${itemName}任务结束`);
+    return 1
+}
+
 module.exports = () => {
     let flag = false
     try {
@@ -355,6 +591,29 @@ module.exports = () => {
         for (let index = 0; index < 3; index++) {
             console.log('执行第', index + 1, '次')
             let code = task()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
+
+
+        for (let index = 0; index < 3; index++) {
+            console.log('执行第', index + 1, '次')
+            let code = task1()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
+
+        for (let index = 0; index < 3; index++) {
+            console.log('执行第', index + 1, '次')
+            let code = task2()
             if (code == 0) {
                 autojsUtils.close(appName)
                 console.log(`${itemName}任务执行失败,再次执行`)
