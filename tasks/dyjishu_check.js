@@ -30,7 +30,7 @@ function dyGuangao(times) {
         if (text('广告').findOne(1000)) {
             console.log('广告进入成功')
         }
-        sleep(1000 * 30)
+        sleep(1000 * 15)
         let isOK = false
 
         if (textStartsWith('首单最高').findOne(1000)) {
@@ -61,6 +61,7 @@ function dyGuangao(times) {
             click(guangxy.x, guangxy.y)
             sleep(1000 * 8)
         }
+        sleep(1000 * 10)
         if (isOK) {
             let stop = false
             for (let i = 0; i < 5; i++) {
@@ -309,7 +310,7 @@ function task1() {
         click(task_png[0], task_png[1])
         sleep(1000 * 2)
 
-        dyShiping(30)
+        dyShiping(15)
     } else {
         console.log('没有找到新人签到')
     }
@@ -734,6 +735,53 @@ module.exports = () => {
 
         }
 
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('task2执行1第', index + 1, '次')
+                let code = task2()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('task2执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task5()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('task2执行1第', index + 1, '次')
+                let code = task2()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('task2执行1任务报错', error)
+            }
+
+        }
+
         for (let index = 0; index < 5; index++) {
             try {
                 console.log('执行1第', index + 1, '次')
@@ -796,6 +844,36 @@ module.exports = () => {
             }
 
         }
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task5()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('task2执行1第', index + 1, '次')
+                let code = task2()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('task2执行1任务报错', error)
+            }
+
+        }
 
         for (let index = 0; index < 5; index++) {
             try {
@@ -809,6 +887,36 @@ module.exports = () => {
                 }
             } catch (error) {
                 console.log('执行1任务报错', error)
+            }
+
+        }
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task5()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
+
+        }
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('task2执行1第', index + 1, '次')
+                let code = task2()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('task2执行1任务报错', error)
             }
 
         }
@@ -828,7 +936,21 @@ module.exports = () => {
             }
 
         }
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task5()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
 
+        }
 
         for (let index = 0; index < 3; index++) {
             try {
@@ -846,7 +968,21 @@ module.exports = () => {
 
         }
 
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task5()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
+            }
 
+        }
         for (let index = 0; index < 3; index++) {
             try {
                 console.log('task1执行1第', index + 1, '次')
@@ -859,6 +995,22 @@ module.exports = () => {
                 }
             } catch (error) {
                 console.log('task1执行1任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 5; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = task5()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行1任务报错', error)
             }
 
         }
