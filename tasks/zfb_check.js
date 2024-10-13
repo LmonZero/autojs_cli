@@ -43,13 +43,13 @@ function zfbShiping(times) {
             console.log('发现不存在,跑飞了？？')
             break
         }
-
+        let pxy = Math.ceil(Math.random() * 100)
         console.log(i, '滑动,休息15s')
-        swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+        swipe(Math.ceil(width / 2) + pxy, Math.ceil(height / 2) + 200 + pxy, Math.ceil(width / 2) - + pxy, Math.ceil(height / 2) - 500 - pxy, 600)
 
         if (text('点击进入直播间').findOne(2000)) {
             console.log('是直播,划走')
-            swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
+            swipe(Math.ceil(width / 2) + pxy, Math.ceil(height / 2) + 200 + pxy + 1, Math.ceil(width / 2) - + pxy, Math.ceil(height / 2) - 500 - pxy + 1, 600)
         }
 
         sleep(1000 * 8)
