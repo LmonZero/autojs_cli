@@ -38,6 +38,13 @@ function ksGuangao(times) {
         sleep(1000 * time)
 
         let isOK = false
+        if (text('抢先领取').findOne(1000)) {
+            let xy = text('抢先领取').findOne(1000).center()
+            console.log('抢先领取')
+            click(xy.x, xy.y)
+            sleep(1000 * 8)
+            isOK = true
+        }
 
         if (text('下载抢购').findOne(1000)) {
             let xy = text('下载抢购').findOne(1000).center()
