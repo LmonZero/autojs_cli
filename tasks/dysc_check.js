@@ -57,12 +57,16 @@ function dyGuangao(times) {
                     sleep(1000 * 2)
                     break
                 } else {
-                    console.log('无法继续看视频')
+                    console.log('无法继续看广告')
                     stop = true
                 }
 
             }
 
+        }
+
+        if (stop) {
+            break
         }
 
     }
@@ -219,7 +223,6 @@ function task1() {
         text('以后再说').findOne(2000).click()
         sleep(1000 * 2)
     }
-
 
     if (text('立即签到').findOne(1000)) {
         let xy = text('立即签到').findOne().center()
@@ -383,31 +386,31 @@ function shipingTask() {
     if (task_png) {
         click(task_png[0], task_png[1])
         sleep(1000 * 3)
-        dyGuangao(5)
-    }
+        dyGuangao(10)
 
-    console.log('看视频')
+        console.log('看视频')
 
-    if (text('看视频赚金币').findOne(2000)) {
-        let xy = text('看视频赚金币').findOne(2000).center()
-        click(xy.x, xy.y)
-        sleep(1000 * 2)
-        if (text('推荐').findOne(1000)) {
-            console.log('进入推荐视频界面')
+        if (text('看视频赚金币').findOne(2000)) {
+            let xy = text('看视频赚金币').findOne(2000).center()
+            click(xy.x, xy.y)
+            sleep(1000 * 2)
+            if (text('推荐').findOne(1000)) {
+                console.log('进入推荐视频界面')
 
 
-            for (let i = 0; i < 5; i++) {
-                console.log(i, '滑动,休息5s')
-                swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
-                sleep(1000 * 5)
-                let delay = Math.ceil(Math.random() * 10)
-                console.log('随机', delay)
-                sleep(1000 * delay)
+                for (let i = 0; i < 5; i++) {
+                    console.log(i, '滑动,休息5s')
+                    swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 500, Math.ceil(width / 2), Math.ceil(height / 2) - 300, 600)
+                    sleep(1000 * 5)
+                    let delay = Math.ceil(Math.random() * 10)
+                    console.log('随机', delay)
+                    sleep(1000 * delay)
+                }
+
             }
-
         }
-    }
 
+    }
 
     sleep(1000 * 5)
     autojsUtils.close(appName)
@@ -433,7 +436,16 @@ module.exports = () => {
                 break
             }
         }
-
+        for (let index = 0; index < 3; index++) {
+            console.log('执行1第', index + 1, '次')
+            let code = shipingTask()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
         for (let index = 0; index < 3; index++) {
             console.log('执行1第', index + 1, '次')
             let code = task1()
@@ -445,16 +457,39 @@ module.exports = () => {
             }
         }
 
-        // for (let index = 0; index < 3; index++) {
-        //     console.log('执行2第', index + 1, '次')
-        //     let code = shipingTask()
-        //     if (code == 0) {
-        //         autojsUtils.close(appName)
-        //         console.log(`${itemName}任务执行失败,再次执行`)
-        //     } else {
-        //         break
-        //     }
-        // }
+        for (let index = 0; index < 3; index++) {
+            console.log('执行1第', index + 1, '次')
+            let code = shipingTask()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
+        for (let index = 0; index < 3; index++) {
+            console.log('执行1第', index + 1, '次')
+            let code = task1()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
+
+        for (let index = 0; index < 3; index++) {
+            console.log('执行1第', index + 1, '次')
+            let code = shipingTask()
+            if (code == 0) {
+                autojsUtils.close(appName)
+                console.log(`${itemName}任务执行失败,再次执行`)
+            } else {
+                break
+            }
+        }
+
+
     } catch (error) {
         console.error('catch====', error)
     } finally {

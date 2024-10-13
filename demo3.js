@@ -239,15 +239,177 @@ try {
     // let xy = textStartsWith('天天预约').findOne(2000).parent().child(3).center()
     // click(xy.x, xy.y)
     // sleep(1000 * 5)
-    let arr = files.listDir("./png");
-    console.log('图片路径===', arr);
-    sleep(1000 * 5)
-    let img = capScreen()
-    let small = images.read('./png/zfb_ck03.jpg')
-    console.log('small', small)
-    let task_png = getPngCenter(small, img, 0.6)
-    console.log('task_png', task_png)
-    small.recycle()
+    // let arr = files.listDir("./png");
+    // console.log('图片路径===', arr);
+    // sleep(1000 * 5)
+    // let img = capScreen()
+    // let small = images.read('./png/zfb_ck03.jpg')
+    // console.log('small', small)
+    // let task_png = getPngCenter(small, img, 0.6)
+    // console.log('task_png', task_png)
+    // small.recycle()
+
+    // console.log('====', text('发现').findOne(2000).parent().parent().parent().parent().parent().parent().parent().parent().brother(-1).child(0).child(0).child(0).child(1).child(0).child(0).child(1).child(0).child(0).child(0).child(2).child(0))
+    // let xy = text('发现').findOne(2000).parent().parent().parent().parent().parent().parent().parent().parent().brother(-1).child(0).child(0).child(0).child(1).child(0).child(0).child(1).child(0).child(0).child(0).child(2).child(0).center()
+    // click(xy.x, xy.y)
+    // sleep(1000 * 5)
+
+
+    if (text('快来说点什么吧！').findOne(2000)) {
+        xy = text('快来说点什么吧！').findOne(2000).center()
+        console.log('快来说点什么吧！', xy)
+        if (xy && xy.x > 0 && xy.y > 0) {
+            click(xy.x, xy.y)
+            sleep(1000)
+
+            if (text('[强]').findOne(1000)) {
+                xy = text('[强]').findOne(2000).center()
+                console.log('强', xy)
+                if (xy && xy.x > 0 && xy.y > 0) {
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    text('发送').findOne(1000).click()
+                    sleep(1000 * 1)
+                }
+            }
+            xy = text('发现').findOne(2000).center()
+            if (xy && xy.x > 0 && xy.y > 0) {
+                click(xy.x, xy.y)
+                console.log('点击发现')
+            }
+        }
+    }
+    if (text('喜欢就说点什么吧~').findOne(2000)) {
+        xy = text('喜欢就说点什么吧~').findOne(2000).center()
+        console.log('喜欢就说点什么吧~', xy)
+        if (xy && xy.x > 0 && xy.y > 0) {
+            click(xy.x, xy.y)
+            sleep(1000)
+            if (text('[强]').findOne(1000)) {
+                xy = text('[强]').findOne(2000).center()
+                console.log('强', xy)
+                if (xy && xy.x > 0 && xy.y > 0) {
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    text('发送').findOne(1000).click()
+                    sleep(1000 * 1)
+                }
+            }
+            xy = text('发现').findOne(2000).center()
+            if (xy && xy.x > 0 && xy.y > 0) {
+                click(xy.x, xy.y)
+                console.log('点击发现')
+            }
+        }
+    }
+    if (text('进来聊聊吧~').findOne(2000)) {
+        xy = text('进来聊聊吧~').findOne(2000).center()
+        console.log('进来聊聊吧~', xy)
+        sleep(1000)
+
+        if (xy && xy.x > 0 && xy.y > 0) {
+            click(xy.x, xy.y)
+            sleep(1000)
+
+            if (text('[强]').findOne(1000)) {
+                xy = text('[强]').findOne(2000).center()
+                console.log('强', xy)
+                if (xy && xy.x > 0 && xy.y > 0) {
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    text('发送').findOne(1000).click()
+                    sleep(1000 * 1)
+                }
+            }
+            xy = text('发现').findOne(2000).center()
+            if (xy && xy.x > 0 && xy.y > 0) {
+                click(xy.x, xy.y)
+                console.log('点击发现')
+            }
+        }
+    }
+    if (text('视频怎么样？说点什么吧~').findOne(2000)) {
+        xy = text('视频怎么样？说点什么吧~').findOne(2000).center()
+        console.log('视频怎么样？说点什么吧~', xy)
+        if (xy && xy.x > 0 && xy.y > 0) {
+            click(xy.x, xy.y)
+            sleep(1000)
+
+            if (text('[强]').findOne(1000)) {
+                xy = text('[强]').findOne(2000).center()
+                console.log('强', xy)
+                if (xy && xy.x > 0 && xy.y > 0) {
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    text('发送').findOne(1000).click()
+                    sleep(1000 * 1)
+                }
+            }
+            xy = text('发现').findOne(2000).center()
+            if (xy && xy.x > 0 && xy.y > 0) {
+                click(xy.x, xy.y)
+                console.log('点击发现')
+            }
+        }
+    }
+    if (text('说点什么，鼓励一下').findOne(2000)) {
+        xy = text('说点什么，鼓励一下').findOne(2000).center()
+        console.log('说点什么，鼓励一下', xy)
+        if (xy && xy.x > 0 && xy.y > 0) {
+            click(xy.x, xy.y)
+            sleep(1000)
+            if (text('[强]').findOne(1000)) {
+                xy = text('[强]').findOne(2000).center()
+                console.log('强', xy)
+                if (xy && xy.x > 0 && xy.y > 0) {
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    click(xy.x, xy.y)
+                    sleep(1000 * 1)
+
+                    text('发送').findOne(1000).click()
+                    sleep(1000 * 1)
+                }
+            }
+            xy = text('发现').findOne(2000).center()
+            if (xy && xy.x > 0 && xy.y > 0) {
+                click(xy.x, xy.y)
+                console.log('点击发现')
+            }
+        }
+    }
 
 } catch (error) {
     console.error('==eeeee====', error)

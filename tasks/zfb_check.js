@@ -52,8 +52,8 @@ function zfbShiping(times) {
             swipe(Math.ceil(width / 2), Math.ceil(height / 2) + 200, Math.ceil(width / 2), Math.ceil(height / 2) - 500, 600)
         }
 
-        sleep(1000 * 15)
-        let delay = Math.ceil(Math.random() * 15)
+        sleep(1000 * 8)
+        let delay = Math.ceil(Math.random() * 8)
         console.log('随机', delay)
         sleep(1000 * delay)
         if (delay > 6) {
@@ -66,6 +66,190 @@ function zfbShiping(times) {
                         longClick(xy.x, xy.y)
                         sleep(1000 * 2)
                     }
+
+                    if (delay > 8) {
+                        xy = text('收藏').findOne(2000).center()
+                        console.log('收藏开始', xy)
+                        if (xy && xy.x > 0 && xy.y > 0) {
+                            click(xy.x, xy.y)
+                        }
+                    }
+                    if (delay > 10 && delay < 15) {
+
+                        if (text('快来说点什么吧！').findOne(2000)) {
+                            xy = text('快来说点什么吧！').findOne(2000).center()
+                            console.log('快来说点什么吧！', xy)
+                            if (xy && xy.x > 0 && xy.y > 0) {
+                                click(xy.x, xy.y)
+                                sleep(2000)
+
+                                if (text('[强]').findOne(1000)) {
+                                    xy = text('[强]').findOne(2000).center()
+                                    console.log('强', xy)
+                                    if (xy && xy.x > 0 && xy.y > 0) {
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        text('发送').findOne(1000).click()
+                                        sleep(1000 * 1)
+                                    }
+                                }
+                                xy = text('发现').findOne(2000).center()
+                                if (xy && xy.x > 0 && xy.y > 0) {
+                                    click(xy.x, xy.y)
+                                    console.log('点击发现')
+                                }
+                            }
+                        }
+                        if (text('喜欢就说点什么吧~').findOne(2000)) {
+                            xy = text('喜欢就说点什么吧~').findOne(2000).center()
+                            console.log('喜欢就说点什么吧~', xy)
+                            if (xy && xy.x > 0 && xy.y > 0) {
+                                click(xy.x, xy.y)
+                                sleep(2000)
+                                if (text('[强]').findOne(1000)) {
+                                    xy = text('[强]').findOne(2000).center()
+                                    console.log('强', xy)
+                                    if (xy && xy.x > 0 && xy.y > 0) {
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        text('发送').findOne(1000).click()
+                                        sleep(1000 * 1)
+                                    }
+                                }
+                                xy = text('发现').findOne(2000).center()
+                                if (xy && xy.x > 0 && xy.y > 0) {
+                                    click(xy.x, xy.y)
+                                    console.log('点击发现')
+                                }
+                            }
+                        }
+                        if (text('进来聊聊吧~').findOne(2000)) {
+                            xy = text('进来聊聊吧~').findOne(2000).center()
+                            console.log('进来聊聊吧~', xy)
+                            if (xy && xy.x > 0 && xy.y > 0) {
+                                click(xy.x, xy.y)
+                                sleep(2000)
+
+                                if (text('[强]').findOne(1000)) {
+                                    xy = text('[强]').findOne(2000).center()
+                                    console.log('强', xy)
+                                    if (xy && xy.x > 0 && xy.y > 0) {
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        text('发送').findOne(1000).click()
+                                        sleep(1000 * 1)
+                                    }
+                                }
+                                xy = text('发现').findOne(2000).center()
+                                if (xy && xy.x > 0 && xy.y > 0) {
+                                    click(xy.x, xy.y)
+                                    console.log('点击发现')
+                                }
+                            }
+                        }
+                        if (text('视频怎么样？说点什么吧~').findOne(2000)) {
+                            xy = text('视频怎么样？说点什么吧~').findOne(2000).center()
+                            console.log('视频怎么样？说点什么吧~', xy)
+                            if (xy && xy.x > 0 && xy.y > 0) {
+                                click(xy.x, xy.y)
+                                sleep(2000)
+
+                                if (text('[强]').findOne(1000)) {
+                                    xy = text('[强]').findOne(2000).center()
+                                    console.log('强', xy)
+                                    if (xy && xy.x > 0 && xy.y > 0) {
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        text('发送').findOne(1000).click()
+                                        sleep(1000 * 1)
+                                    }
+                                }
+                                xy = text('发现').findOne(2000).center()
+                                if (xy && xy.x > 0 && xy.y > 0) {
+                                    click(xy.x, xy.y)
+                                    console.log('点击发现')
+                                }
+                            }
+                        }
+                        if (text('说点什么，鼓励一下').findOne(2000)) {
+                            xy = text('说点什么，鼓励一下').findOne(2000).center()
+                            console.log('说点什么，鼓励一下', xy)
+                            if (xy && xy.x > 0 && xy.y > 0) {
+                                click(xy.x, xy.y)
+                                sleep(2000)
+                                if (text('[强]').findOne(1000)) {
+                                    xy = text('[强]').findOne(2000).center()
+                                    console.log('强', xy)
+                                    if (xy && xy.x > 0 && xy.y > 0) {
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        click(xy.x, xy.y)
+                                        sleep(1000 * 1)
+
+                                        text('发送').findOne(1000).click()
+                                        sleep(1000 * 1)
+                                    }
+                                }
+                                xy = text('发现').findOne(2000).center()
+                                if (xy && xy.x > 0 && xy.y > 0) {
+                                    click(xy.x, xy.y)
+                                    console.log('点击发现')
+                                }
+                            }
+                        }
+                    }
+
+                    if (delay > 15) {
+
+                        xy = text('关注').findOne(2000).center()
+                        console.log('关注开始', xy)
+                        if (xy && xy.x > 0 && xy.y > 0) {
+                            click(xy.x, xy.y)
+                            console.log('点击关注')
+
+                            xy = text('发现').findOne(2000).center()
+                            if (xy && xy.x > 0 && xy.y > 0) {
+                                click(xy.x, xy.y)
+                                console.log('点击发现')
+                            }
+                        }
+
+                    }
+
+                    sleep(1000 * 2)
+
 
                 } catch (error) {
                     console.log('点赞失败', error)
@@ -102,18 +286,24 @@ function taskCk() {
     sleep(1000 * 10)
 
     console.log('开始签到')
-    // zfb_ck01
-    let img = autojsUtils.capScreen()
-    let small = images.read('./png/zfb_ck01.jpg')
-    let task_png = autojsUtils.getPngCenter(small, img, 0.6)
-    small.recycle()
+    // // zfb_ck01
+    // let img = autojsUtils.capScreen()
+    // let small = images.read('./png/zfb_ck01.jpg')
+    // let task_png = autojsUtils.getPngCenter(small, img, 0.6)
+    // small.recycle()
+
+    let task_png = text('发现').findOne(2000)
+
     if (task_png) {
-        console.log('进入签到')
-        click(task_png[0], task_png[1])
+        console.log('进入签到22')
+        // click(task_png[0], task_png[1])
+        task_png = text('发现').findOne(2000).parent().parent().parent().parent().parent().parent().parent().parent().brother(-1).child(0).child(0).child(0).child(1).child(0).child(0).child(1).child(0).child(0).child(0).child(2).child(0).center()
+        click(task_png.x, task_png.y)
         sleep(1000 * 5)
 
         if (text('去签到').findOne(1000)) {
-            text('去签到').findOne(1000).click()
+            let xy = text('去签到').findOne(1000).center()
+            click(xy.x, xy.y)
             sleep(1000 * 2)
             // zfb_ck02.jpg
             img = autojsUtils.capScreen()
@@ -160,14 +350,19 @@ function taskCk1() {
     sleep(1000 * 10)
 
     console.log('开始签到')
-    // zfb_ck01
-    let img = autojsUtils.capScreen()
-    let small = images.read('./png/zfb_ck01.jpg')
-    let task_png = autojsUtils.getPngCenter(small, img, 0.6)
-    small.recycle()
+    // // zfb_ck01
+    // let img = autojsUtils.capScreen()
+    // let small = images.read('./png/zfb_ck01.jpg')
+    // let task_png = autojsUtils.getPngCenter(small, img, 0.6)
+    // small.recycle()
+
+    let task_png = text('发现').findOne(2000)
+
     if (task_png) {
         console.log('进入签到22')
-        click(task_png[0], task_png[1])
+        // click(task_png[0], task_png[1])
+        task_png = text('发现').findOne(2000).parent().parent().parent().parent().parent().parent().parent().parent().brother(-1).child(0).child(0).child(0).child(1).child(0).child(0).child(1).child(0).child(0).child(0).child(2).child(0).center()
+        click(task_png.x, task_png.y)
         sleep(1000 * 5)
         if (textStartsWith('天天预约').findOne(2000)) {
             let xy = textStartsWith('天天预约').findOne(2000).parent().child(3).center()
@@ -232,12 +427,24 @@ function task() {
     let xy = text('视频').findOne(1000).center()
     click(xy.x, xy.y)
     sleep(1000 * 10)
-    // 图片识别失败 没办法
-    let img = autojsUtils.capScreen()
-    let small = images.read('./png/zfb_ck03.jpg')
-    let task_png = autojsUtils.getPngCenter(small, img, 0.5)
-    small.recycle()
-    if (task_png) {
+    // // 图片识别失败 没办法
+    // let img = autojsUtils.capScreen()
+    // let small = images.read('./png/zfb_ck03.jpg')
+    // let task_png = autojsUtils.getPngCenter(small, img, 0.5)
+    // small.recycle()
+
+    let task_png = null
+    try {
+        console.log('进入签到22')
+        // click(task_png[0], task_png[1])
+        task_png = text('发现').findOne(2000).parent().parent().parent().parent().parent().parent().parent().parent().brother(-1).child(0).child(0).child(0).child(1).child(0).child(0).child(1).child(0).child(0).child(0).child(2).child(0).center()
+
+        sleep(1000 * 5)
+    } catch (error) {
+        console.log('今日任务上限')
+    }
+
+    if (!task_png) {
         console.log('今日视频已经上限')
     } else {
         zfbShiping(30)
@@ -262,23 +469,6 @@ module.exports = () => {
         // taskCk
         autojsUtils.showMem()
 
-
-        for (let index = 0; index < 2; index++) {
-            try {
-                console.log('执行1第', index + 1, '次')
-                let code = taskCk1()
-                if (code == 0) {
-                    autojsUtils.close(appName)
-                    console.log(`${itemName}任务执行失败,再次执行`)
-                } else {
-                    break
-                }
-            } catch (error) {
-                console.log('执行1任务报错', error)
-            }
-
-        }
-
         for (let index = 0; index < 2; index++) {
             try {
                 console.log('执行ck第', index + 1, '次')
@@ -291,6 +481,25 @@ module.exports = () => {
                 }
             } catch (error) {
                 console.log('执行ck任务报错', error)
+                break
+
+            }
+
+        }
+        for (let index = 0; index < 2; index++) {
+            try {
+                console.log('执行1第', index + 1, '次')
+                let code = taskCk1()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行ck1任务报错', error)
+                break
+
             }
 
         }
