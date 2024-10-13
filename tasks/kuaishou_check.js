@@ -1357,6 +1357,23 @@ module.exports = () => {
 
         for (let index = 0; index < 3; index++) {
             try {
+                console.log('执行23第', index + 1, '次')
+                let code = shiping23Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行2任务报错', error)
+            }
+
+        }
+
+
+        for (let index = 0; index < 3; index++) {
+            try {
                 console.log('执行1第', index + 1, '次')
                 let code = shiping1Task()
                 if (code == 0) {
@@ -1402,6 +1419,21 @@ module.exports = () => {
             }
 
         }
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行23第', index + 1, '次')
+                let code = shiping23Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行2任务报错', error)
+            }
+
+        }
 
         for (let index = 0; index < 3; index++) {
             try {
@@ -1418,11 +1450,10 @@ module.exports = () => {
             }
 
         }
-
         for (let index = 0; index < 3; index++) {
             try {
-                console.log('执行21第', index + 1, '次')
-                let code = shiping21Task()
+                console.log('执行23第', index + 1, '次')
+                let code = shiping23Task()
                 if (code == 0) {
                     autojsUtils.close(appName)
                     console.log(`${itemName}任务执行失败,再次执行`)
@@ -1435,10 +1466,11 @@ module.exports = () => {
 
         }
 
+
         for (let index = 0; index < 3; index++) {
             try {
-                console.log('执行22第', index + 1, '次')
-                let code = shiping22Task()
+                console.log('执行0第', index + 1, '次')
+                let code = shipingTask()
                 if (code == 0) {
                     autojsUtils.close(appName)
                     console.log(`${itemName}任务执行失败,再次执行`)
@@ -1446,11 +1478,10 @@ module.exports = () => {
                     break
                 }
             } catch (error) {
-                console.log('执行2任务报错', error)
+                console.log('执行0任务报错', error)
             }
 
         }
-
 
         for (let index = 0; index < 3; index++) {
             try {
@@ -1481,6 +1512,21 @@ module.exports = () => {
                 }
             } catch (error) {
                 console.log('执行0任务报错', error)
+            }
+
+        }
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行23第', index + 1, '次')
+                let code = shiping23Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行2任务报错', error)
             }
 
         }
@@ -1532,6 +1578,41 @@ module.exports = () => {
             }
 
         }
+
+
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行21第', index + 1, '次')
+                let code = shiping21Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行2任务报错', error)
+            }
+
+        }
+
+        for (let index = 0; index < 3; index++) {
+            try {
+                console.log('执行22第', index + 1, '次')
+                let code = shiping22Task()
+                if (code == 0) {
+                    autojsUtils.close(appName)
+                    console.log(`${itemName}任务执行失败,再次执行`)
+                } else {
+                    break
+                }
+            } catch (error) {
+                console.log('执行2任务报错', error)
+            }
+
+        }
+
 
         // // shiping4Task //看6次 直播已经没有了
         // for (let index = 0; index < 3; index++) {
