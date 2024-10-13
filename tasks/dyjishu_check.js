@@ -49,8 +49,8 @@ function dyGuangao(times) {
         }
 
         if (textStartsWith('点击进入').findOne(1000)) {
-            console.log('查看详细')
-            let xy = textStartsWith('查看详细').findOne(1000).center()
+            console.log('点击进入')
+            let xy = textStartsWith('点击进入').findOne(1000).center()
             click(xy.x, xy.y)
             sleep(1000 * 8)
             isOK = true
@@ -379,7 +379,7 @@ function task2() {
             console.log('找到宝箱任务')
             click(task_png[0], task_png[1])
             sleep(1000 * 2)
-            dyGuangao(10)
+            dyGuangao(20)
         }
 
     } else {
@@ -626,7 +626,7 @@ function task5() {
             if (text('反馈').findOne(2000)) {
                 console.log('进入看广告')
 
-                dyGuangao(10)
+                dyGuangao(20)
             }
             break;
         }

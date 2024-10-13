@@ -29,13 +29,15 @@ function dyGuangao(times) {
         if (text('广告').findOne(1000)) {
             console.log('广告进入成功')
         }
-        sleep(1000 * 30)
+        sleep(1000 * 15)
 
         if (guangaoxy) {
             console.log('点击广告')
             click(guangaoxy.x, guangaoxy.y)
             sleep(1000 * 8)
         }
+        sleep(1000 * 10)
+
         let stop = false
         for (let j = 0; j < 3; j++) {
             stop = false
@@ -113,7 +115,7 @@ function task() {
         if (shiping_in) {
             console.log('点击继续观看')
             click(shiping_in[0], shiping_in[1])
-            dyGuangao(5)
+            dyGuangao(20)
         }
     }
 
@@ -159,7 +161,7 @@ function task() {
             if (shiping_in) {
                 console.log('点击继续观看')
                 click(shiping_in[0], shiping_in[1])
-                dyGuangao(5)
+                dyGuangao(20)
             }
         }
 
@@ -188,7 +190,7 @@ function task() {
             if (task_png) {
                 console.log('点击看广告', click(task_png[0], task_png[1]))
                 sleep(1000 * 2)
-                dyGuangao(5)
+                dyGuangao(20)
             }
 
 
@@ -236,7 +238,7 @@ function task1() {
         if (shiping_in) {
             console.log('点击继续观看')
             click(shiping_in[0], shiping_in[1])
-            dyGuangao(5)
+            dyGuangao(20)
         }
     }
 
@@ -281,7 +283,7 @@ function task1() {
             if (shiping_in) {
                 console.log('点击继续观看')
                 click(shiping_in[0], shiping_in[1])
-                dyGuangao(5)
+                dyGuangao(20)
             }
         }
 
@@ -386,7 +388,7 @@ function shipingTask() {
     if (task_png) {
         click(task_png[0], task_png[1])
         sleep(1000 * 3)
-        dyGuangao(10)
+        dyGuangao(20)
 
         console.log('看视频')
 
