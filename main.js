@@ -102,7 +102,7 @@ for (let i = 0; i < 1; i++) {
 }
 
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 4; i++) {
     console.log('腾讯视频任务', i, 'all', all++)
     tenxun_check()
     console.log('1 tenxun_check 1s')
