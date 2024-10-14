@@ -246,7 +246,7 @@ function task() {
         console.log('没有进入，没有找到《赚钱任务》')
         return code
     }
-
+    sleep(100)
     img = autojsUtils.capScreen()
     small = images.read('./png/dyjs_ck_02.jpg')
     task_png = autojsUtils.getPngCenter(small, img, 0.8)
