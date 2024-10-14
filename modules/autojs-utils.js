@@ -166,8 +166,9 @@ module.exports = {
                 return
             }
             // console.log('开启线程')
+            sleep(800)
             toastLog(`cap`);
-            sleep(500)
+            sleep(300)
             let img = images.captureScreen();
             sleep(20)
             console.log('截图完成')
