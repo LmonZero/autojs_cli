@@ -37,6 +37,8 @@ function dyGuangao(times) {
             sleep(1000 * 8)
         }
         sleep(1000 * 10)
+        launch(appName)
+        sleep(1000 * 2)
 
         let stop = false
         for (let j = 0; j < 3; j++) {
