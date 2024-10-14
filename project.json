@@ -8,7 +8,7 @@
     "splashText": "Powered by AutoJs6",
     "stableMode": false
   },
-  "main": "kuaishou_main.js",
+  "main": "main_fast",
   "name": "%ProjectName%",
   "optimization": {
     "removeOpenCv": false,

@@ -30,7 +30,7 @@ function dyGuangao(times) {
         if (text('广告').findOne(1000)) {
             console.log('广告进入成功')
         }
-        sleep(1000 * 15)
+        sleep(1000 * 12)
         let isOK = false
 
         if (textStartsWith('首单最高').findOne(1000)) {
@@ -60,8 +60,9 @@ function dyGuangao(times) {
             console.log('点击通用广告坐标')
             click(guangxy.x, guangxy.y)
             sleep(1000 * 8)
+            isOK = true
         }
-        sleep(1000 * 10)
+        sleep(1000 * 8)
         if (isOK) {
             let stop = false
             for (let i = 0; i < 5; i++) {
@@ -99,7 +100,7 @@ function dyGuangao(times) {
                             break;
                         } else {
                             console.log('无法继续看视频???')
-                            true
+                            stop = true
                         }
                     }
                 }
