@@ -39,6 +39,21 @@ try {
 
     }
 
+    for (var i = 0; i < 100; i++) {
+        console.log('==================', i)
+        demoCap()
+    }
+
+    home()
+    engines.stopAll();
+    // Packages.java.lang.System.gc()
+
+} catch (error) {
+    console.log('123', error);
+}
+
+
+function demoCap() {
 
     var thread
     try {
@@ -57,9 +72,10 @@ try {
         // console.log('开启线程')
         toastLog(`cap`);
         sleep(500)
+        // toastLog(`cap`);
         let img = images.captureScreen();
         sleep(20)
-        console.log('截图完成')
+        console.log('截图完成，', img)
         // toastLog(`截图完成`);
         img.recycle()
     } catch (error) {
@@ -72,10 +88,4 @@ try {
         }
     }
 
-    home()
-    engines.stopAll();
-    // Packages.java.lang.System.gc()
-
-} catch (error) {
-    console.log('123', error);
 }

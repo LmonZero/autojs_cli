@@ -96,7 +96,7 @@ function ksGuangao(times) {
         if (isOK) {
             let stop = false
 
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 3; i++) {
                 if (text('取消').findOne(1000)) {
                     console.log('取消')
                     let xy = text('取消').findOne(1000).center()
