@@ -33,7 +33,7 @@ function ksGuangao(times) {
         let time = 10
         if (text('广告').findOne(1000)) {
             console.log('广告进入成功')
-            time = 30
+            time = 20
         }
         sleep(1000 * time)
 
@@ -94,6 +94,9 @@ function ksGuangao(times) {
         }
 
         if (isOK) {
+            launch(appName)
+            sleep(1000 * 5)
+
             let stop = false
 
             for (let i = 0; i < 3; i++) {
@@ -120,7 +123,7 @@ function ksGuangao(times) {
                         console.log('继续观看')
                         let xy = text('继续观看').findOne(1000).center()
                         click(xy.x, xy.y)
-                        sleep(1000 * 2)
+                        sleep(1000 * 10)
 
                         break;
                     } else {

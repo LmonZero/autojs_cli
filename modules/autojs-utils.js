@@ -153,10 +153,10 @@ module.exports = {
         var thread
         try {
             thread = threads.start(function () {
-                sleep(500)
-
-                if (text('立即开始').findOne(3000)) {
+                if (text('立即开始').findOne(1000)) {
+                    sleep(100)
                     text('立即开始').findOne(1000).click()
+                    sleep(100)
                 }
                 console.log('线程结束..')
             });
@@ -166,10 +166,11 @@ module.exports = {
                 return
             }
             // console.log('开启线程')
+            thread.join(2000) ////等待该线程完成
             toastLog(`cap`);
-            sleep(500)
+            sleep(400)
             let img = images.captureScreen();
-            sleep(20)
+            sleep(100)
             console.log('截图完成')
             // toastLog(`截图完成`);
             return img

@@ -29,14 +29,16 @@ function dyGuangao(times) {
         if (text('广告').findOne(1000)) {
             console.log('广告进入成功')
         }
-        sleep(1000 * 15)
+        sleep(1000 * 20)
 
         if (guangaoxy) {
             console.log('点击广告')
             click(guangaoxy.x, guangaoxy.y)
             sleep(1000 * 8)
         }
-        sleep(1000 * 10)
+        sleep(1000 * 5)
+        launch(appName)
+        sleep(1000 * 5)
 
         let stop = false
         for (let j = 0; j < 3; j++) {
@@ -56,7 +58,7 @@ function dyGuangao(times) {
                     console.log('继续观看')
                     let xy = text('继续观看').findOne(1000).center()
                     click(xy.x, xy.y)
-                    sleep(1000 * 2)
+                    sleep(1000 * 10)
                     break
                 } else {
                     console.log('无法继续看广告')

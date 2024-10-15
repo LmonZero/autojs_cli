@@ -30,7 +30,7 @@ function dyGuangao(times) {
         if (text('广告').findOne(1000)) {
             console.log('广告进入成功')
         }
-        sleep(1000 * 12)
+        sleep(1000 * 20)
         let isOK = false
 
         if (textStartsWith('首单最高').findOne(1000)) {
@@ -62,8 +62,11 @@ function dyGuangao(times) {
             sleep(1000 * 8)
             isOK = true
         }
-        sleep(1000 * 8)
+        sleep(1000 * 5)
         if (isOK) {
+            launch(appName)
+            sleep(1000 * 8)
+
             let stop = false
             for (let i = 0; i < 5; i++) {
                 stop = false
@@ -77,6 +80,7 @@ function dyGuangao(times) {
                     sleep(1000 * 2)
                     back();
                     sleep(1000 * 2)
+                    break;
                 }
 
                 if (text('继续领奖励').findOne(1000)) {
@@ -97,6 +101,7 @@ function dyGuangao(times) {
                             console.log('继续观看')
                             let xy = text('继续观看').findOne(1000).center()
                             click(xy.x, xy.y)
+                            sleep(1000 * 10)
                             break;
                         } else {
                             console.log('无法继续看视频???')
@@ -242,7 +247,7 @@ function task() {
         console.log('没有进入，没有找到《赚钱任务》')
         return code
     }
-
+    sleep(100)
     img = autojsUtils.capScreen()
     small = images.read('./png/dyjs_ck_02.jpg')
     task_png = autojsUtils.getPngCenter(small, img, 0.8)
