@@ -80,6 +80,7 @@ function dyGuangao(times) {
                     sleep(1000 * 2)
                     back();
                     sleep(1000 * 2)
+                    break;
                 }
 
                 if (text('继续领奖励').findOne(1000)) {
