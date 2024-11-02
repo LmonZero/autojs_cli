@@ -38,11 +38,13 @@ try {
         log("内存占用：" + memorySize.toFixed(2) + "MB");
 
     }
+    sleep(10 * 1000)
+    demoCap()
 
-    for (var i = 0; i < 100; i++) {
-        console.log('==================', i)
-        demoCap()
-    }
+    // for (var i = 0; i < 100; i++) {
+    //     console.log('==================', i)
+    //     demoCap()
+    // }
 
     home()
     engines.stopAll();
@@ -77,6 +79,7 @@ function demoCap() {
         sleep(20)
         console.log('截图完成，', img)
         // toastLog(`截图完成`);
+        images.save(img, "./screenshot.png");
         img.recycle()
     } catch (error) {
         console.error('==eeeee====', error)

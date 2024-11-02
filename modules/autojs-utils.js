@@ -206,7 +206,8 @@ module.exports = {
             console.error('==eeeee====', error)
         }
 
-    }, randomSwipe(sx, sy, ex, ey) {
+    },
+    randomSwipe(sx, sy, ex, ey) {
         //设置随机滑动时长范围
         var timeMin = 500
         var timeMax = 1500

@@ -39,6 +39,7 @@ try {
 
     }
 
+    sleep(5000)
 
     var thread
     try {
@@ -60,6 +61,7 @@ try {
         let img = images.captureScreen();
         sleep(20)
         console.log('截图完成')
+
         // toastLog(`截图完成`);
         img.recycle()
     } catch (error) {
